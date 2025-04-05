@@ -72,13 +72,13 @@ scale = Vector2(0.23, 0.23)
 texture = ExtResource("3_jh8bu")
 
 [node name="player" type="Sprite2D" parent="."]
-position = Vector2(-888, -392)
+position = Vector2(-904, -288)
 texture = ExtResource("3_q38kk")
 
 [node name="ob" type="Sprite2D" parent="."]
-position = Vector2(-1000, -504)
+position = Vector2(-1000, -352)
 texture = ExtResource("4_jh8bu")
 
 [node name="bon" type="Sprite2D" parent="."]
-position = Vector2(-936, -552)
+position = Vector2(-952, -376)
 texture = ExtResource("5_3e8km")
