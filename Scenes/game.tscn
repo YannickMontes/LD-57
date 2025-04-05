@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc6hvkl72ckel"]
+
+[ext_resource type="PackedScene" uid="uid://bwr5nusocejj0" path="res://Scenes/player_bogger.tscn" id="1_ebmjs"]
+
+[sub_resource type="TileSet" id="TileSet_ebmjs"]
+tile_size = Vector2i(64, 64)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
+
+[node name="Game" type="Node2D"]
+
+[node name="PlayerBogger" parent="." instance=ExtResource("1_ebmjs")]
+position = Vector2(-130, -34)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_ebmjs")
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2(-1080, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2(-8, -1)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_ebmjs")
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2(1080, 0)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+shape = SubResource("WorldBoundaryShape2D_ebmjs")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-1.24979, -0.000286102)
+zoom = Vector2(0.1, 0.1)
+limit_left = -5800
+limit_right = 5800
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
