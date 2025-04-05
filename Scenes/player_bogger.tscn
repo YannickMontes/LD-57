@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bwr5nusocejj0"]
 
-[ext_resource type="Texture2D" uid="uid://covnpyietbqjw" path="res://Assets/Sprites/BOGGERS.png" id="1_0te08"]
+[ext_resource type="Texture2D" uid="uid://bmglwj0qw68nc" path="res://Assets/Sprites/BOGGERS.png" id="1_0te08"]
 [ext_resource type="Script" uid="uid://chvs7nvi6tjix" path="res://Scripts/player_bogger.gd" id="1_fqqoy"]
 [ext_resource type="Texture2D" uid="uid://bauw47r123foq" path="res://Assets/Sprites/arrows.png" id="3_nxmd7"]
 
@@ -23,6 +23,8 @@ animations = [{
 radius = 128.0
 
 [node name="PlayerBogger" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 64
 script = ExtResource("1_fqqoy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
