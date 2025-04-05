@@ -23,6 +23,8 @@ animations = [{
 radius = 128.0
 
 [node name="PlayerBogger" type="CharacterBody2D"]
+z_index = 5
+collision_layer = 64
 script = ExtResource("1_fqqoy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
