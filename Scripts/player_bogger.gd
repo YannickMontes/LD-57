@@ -21,7 +21,9 @@ var is_currently_on_wall = false
 var is_affected_by_gravity = false
 
 func _physics_process(delta: float) -> void:
-	
+	if not GameManager.is_game_running:
+		return
+		
 	if is_on_wall() && !is_currently_on_wall:
 		is_currently_on_wall = true
 		is_affected_by_gravity = true

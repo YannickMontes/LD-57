@@ -19,8 +19,6 @@ func _process(delta: float) -> void:
 	if not player:
 		return
 		
-	
-	
 	var cam_pos = global_position
 	if player.global_position.y < cam_pos.y:
 		if !should_move_up:

@@ -14,7 +14,7 @@ tile_size = Vector2i(64, 64)
 [node name="Game" type="Node2D"]
 
 [node name="PlayerBogger" parent="." instance=ExtResource("1_ebmjs")]
-position = Vector2(114, -159)
+position = Vector2(264, 75)
 launch_force = 1000.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -42,11 +42,10 @@ position = Vector2(277, -311)
 position = Vector2(-283, -90)
 
 [node name="Finger" parent="." instance=ExtResource("4_3dryh")]
-position = Vector2(-11, 384)
-scale = Vector2(0.3, 0.3)
+position = Vector2(0, 454)
+scale = Vector2(10, 10)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2, -5)
 limit_left = -540
 limit_right = 540
 position_smoothing_speed = 50.0
