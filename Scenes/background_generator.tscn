@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckffxca03cye0"]
+
+[ext_resource type="Script" uid="uid://bemcmkitf2sow" path="res://Scripts/background_generator.gd" id="1_vfmtd"]
+[ext_resource type="Texture2D" uid="uid://coqnwqpgtv3l" path="res://Assets/Sprites/bg.png" id="2_pnxgw"]
+
+[node name="BackgroundGenerator" type="Node2D"]
+script = ExtResource("1_vfmtd")
+texture_bg = ExtResource("2_pnxgw")
+nb_spawn_advance = 3

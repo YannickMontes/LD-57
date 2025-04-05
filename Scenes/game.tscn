@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cc6hvkl72ckel"]
+[gd_scene load_steps=9 format=3 uid="uid://cc6hvkl72ckel"]
 
 [ext_resource type="PackedScene" uid="uid://bwr5nusocejj0" path="res://Scenes/player_bogger.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://dwdswek7o5ik5" path="res://Scenes/bonus.tscn" id="2_qxrlw"]
 [ext_resource type="PackedScene" uid="uid://bntokih1kowfe" path="res://Scenes/obstacle.tscn" id="3_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://c5lg7ftqs3erb" path="res://Scenes/finger.tscn" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://cve4pq232jbme" path="res://Scenes/camera.gd" id="5_wowpa"]
+[ext_resource type="PackedScene" uid="uid://ckffxca03cye0" path="res://Scenes/background_generator.tscn" id="7_1l0tm"]
 
 [sub_resource type="TileSet" id="TileSet_ebmjs"]
 tile_size = Vector2i(64, 64)
@@ -15,7 +16,6 @@ tile_size = Vector2i(64, 64)
 
 [node name="PlayerBogger" parent="." instance=ExtResource("1_ebmjs")]
 position = Vector2(264, 75)
-launch_force = 1000.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_ebmjs")
@@ -53,3 +53,5 @@ script = ExtResource("5_wowpa")
 player_path = NodePath("../PlayerBogger")
 time_to_start_follow = 0.4
 ease_speed = 4.0
+
+[node name="BackgroundGenerator" parent="." instance=ExtResource("7_1l0tm")]
