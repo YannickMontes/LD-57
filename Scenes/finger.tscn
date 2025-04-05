@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://c5lg7ftqs3erb"]
+
+[ext_resource type="Script" uid="uid://cqg5876uc4k0q" path="res://Scripts/finger.gd" id="1_fewg3"]
+[ext_resource type="Texture2D" uid="uid://b0kn7hlpjn3gp" path="res://Assets/Sprites/finger.png" id="1_he3j1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fewg3"]
+atlas = ExtResource("1_he3j1")
+region = Rect2(0, 0, 1024, 1024)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xb0o6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fewg3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Finger" type="Area2D"]
+collision_mask = 64
+script = ExtResource("1_fewg3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_xb0o6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(5084.87, 0)
+scale = Vector2(12.3375, 1)
+polygon = PackedVector2Array(-448.378, 524, -445.055, -230, -429.169, -432, -411.499, -446, -392.37, -392, -383.454, -75, -380.618, 513)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
