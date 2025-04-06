@@ -33,6 +33,10 @@ var is_affected_by_gravity = false
 var max_fuel_charge_time: float:
 	get:
 		return GameManager.max_fuel / fuel_consumption_by_seconds
+		
+var fuel_current_charge_time:float:
+	get:
+		return clamp((time_since_stretch - time_with_no_consumption) / max_fuel_charge_time, 0.0, 1.0)
 
 func _ready() -> void:
 	pass
@@ -53,12 +57,13 @@ func _physics_process(delta: float) -> void:
 	
 	if is_holding_click:
 		launch_feedback_node.visible = current_launch_direction != Vector2.ZERO
-		var arrow_scale = lerp(min_scale_arrow, max_scale_arrow, time_since_stretch / max_fuel_charge_time)
+		var arrow_scale = lerp(min_scale_arrow, max_scale_arrow, fuel_current_charge_time)
 		arrow_scale = clamp(arrow_scale, min_scale_arrow, max_scale_arrow)
 		sprite_arrow.scale = Vector2(arrow_scale, arrow_scale)
-		GameManager.current_fuel -= fuel_consumption_by_seconds * delta
-		if GameManager.current_fuel == 0:
-			launch_bogger()
+		if time_since_stretch > time_with_no_consumption:
+			GameManager.current_fuel -= fuel_consumption_by_seconds * delta
+			if GameManager.current_fuel == 0.0:
+				launch_bogger()
 	else:
 		launch_feedback_node.visible = false
 		
@@ -110,7 +115,7 @@ func handle_inputs(delta: float):
 
 func launch_bogger():
 	is_holding_click = false
-	var force = lerp(min_stretch_force, max_stretch_force, stretch_curve_force.sample(time_since_stretch / max_fuel_charge_time))
+	var force = lerp(min_stretch_force, max_stretch_force, stretch_curve_force.sample(fuel_current_charge_time))
 	velocity = current_launch_direction.normalized() * force
 	is_currently_on_wall = false
 	is_affected_by_gravity = true
