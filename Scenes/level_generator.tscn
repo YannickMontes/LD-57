@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://dvd2pjqw0a61u"]
+
+[ext_resource type="Script" uid="uid://c4q51bf0sf54k" path="res://Scripts/level_generator.gd" id="1_xgtxp"]
+[ext_resource type="PackedScene" uid="uid://cnfp2pnxina1" path="res://Scenes/hair1.tscn" id="2_5lsef"]
+[ext_resource type="PackedScene" uid="uid://dwdswek7o5ik5" path="res://Scenes/bonus.tscn" id="2_hxbet"]
+[ext_resource type="PackedScene" uid="uid://de7a0kt5nkse6" path="res://Scenes/hair2.tscn" id="3_ibufi"]
+[ext_resource type="PackedScene" uid="uid://bntokih1kowfe" path="res://Scenes/obstacle.tscn" id="3_kp8js"]
+[ext_resource type="PackedScene" uid="uid://b2r8tbu10uibm" path="res://Scenes/hair3.tscn" id="4_hxbet"]
+
+[node name="LevelGenerator" type="Node2D"]
+script = ExtResource("1_xgtxp")
+bonus_node = ExtResource("2_hxbet")
+obstacle_node = ExtResource("3_kp8js")
+possible_wall_obstacles = Array[PackedScene]([ExtResource("2_5lsef"), ExtResource("3_ibufi"), ExtResource("4_hxbet")])
+bonus_spawn_interval = Vector2(500, 1000)
+obstacle_spawn_interval = Vector2(500, 1000)
+wall_obstacles_interval = Vector2(300, 800)
+elements_range_x_percentage = 0.6
+advance_generation = 5000.0

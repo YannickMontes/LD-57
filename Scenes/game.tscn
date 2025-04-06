@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://cc6hvkl72ckel"]
 
 [ext_resource type="PackedScene" uid="uid://bwr5nusocejj0" path="res://Scenes/player_bogger.tscn" id="1_ebmjs"]
-[ext_resource type="PackedScene" uid="uid://dwdswek7o5ik5" path="res://Scenes/bonus.tscn" id="2_qxrlw"]
-[ext_resource type="PackedScene" uid="uid://bntokih1kowfe" path="res://Scenes/obstacle.tscn" id="3_wrm1d"]
-[ext_resource type="PackedScene" uid="uid://c5lg7ftqs3erb" path="res://Scenes/finger.tscn" id="4_3dryh"]
-[ext_resource type="Script" uid="uid://cve4pq232jbme" path="res://Scenes/camera.gd" id="5_wowpa"]
+[ext_resource type="PackedScene" uid="uid://w2853hwmje86" path="res://Scenes/finger.tscn" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://cve4pq232jbme" path="res://Scripts/camera.gd" id="5_wowpa"]
+[ext_resource type="Texture2D" uid="uid://bjiu5gu70yr4f" path="res://Assets/Sprites/black_bar.png" id="6_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://ckffxca03cye0" path="res://Scenes/background_generator.tscn" id="7_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://dvd2pjqw0a61u" path="res://Scenes/level_generator.tscn" id="8_v158k"]
 
 [sub_resource type="TileSet" id="TileSet_ebmjs"]
 tile_size = Vector2i(64, 64)
@@ -15,43 +15,70 @@ tile_size = Vector2i(64, 64)
 [node name="Game" type="Node2D"]
 
 [node name="PlayerBogger" parent="." instance=ExtResource("1_ebmjs")]
-position = Vector2(264, 75)
+position = Vector2(345, 151)
+launch_force = 2000.0
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_set = SubResource("TileSet_ebmjs")
 
-[node name="WallLeft" type="StaticBody2D" parent="."]
-position = Vector2(-325, 0)
+[node name="wall_left" type="StaticBody2D" parent="." groups=["wall_left"]]
+position = Vector2(-494.286, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
-position = Vector2(-8, -1)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_left"]
 rotation = 1.5708
 shape = SubResource("WorldBoundaryShape2D_ebmjs")
 
-[node name="WallRight" type="StaticBody2D" parent="."]
-position = Vector2(325, 0)
+[node name="wall_right" type="StaticBody2D" parent="." groups=["wall_right"]]
+position = Vector2(494.286, 0)
 rotation = -1.5708
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wall_right"]
 shape = SubResource("WorldBoundaryShape2D_ebmjs")
 
-[node name="Bonus" parent="." instance=ExtResource("2_qxrlw")]
-position = Vector2(277, -311)
-
-[node name="Obstacle" parent="." instance=ExtResource("3_wrm1d")]
-position = Vector2(-283, -90)
-
-[node name="Finger" parent="." instance=ExtResource("4_3dryh")]
-position = Vector2(0, 454)
-scale = Vector2(10, 10)
-
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_left = -540
-limit_right = 540
+zoom = Vector2(0.7, 0.7)
 position_smoothing_speed = 50.0
 script = ExtResource("5_wowpa")
 player_path = NodePath("../PlayerBogger")
 time_to_start_follow = 0.4
 ease_speed = 4.0
 
+[node name="BlackBar" type="Sprite2D" parent="Camera2D"]
+position = Vector2(-494, 1978)
+scale = Vector2(-4, -4)
+texture = ExtResource("6_1l0tm")
+centered = false
+
+[node name="BlackBar2" type="Sprite2D" parent="Camera2D"]
+position = Vector2(494, -2200)
+scale = Vector2(4, 4)
+texture = ExtResource("6_1l0tm")
+centered = false
+
+[node name="FmodListener2D" type="FmodListener2D" parent="Camera2D"]
+
 [node name="BackgroundGenerator" parent="." instance=ExtResource("7_1l0tm")]
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://FMod/finger_in_the_nose/Build/Desktop/Master.bank", "res://FMod/finger_in_the_nose/Build/Desktop/Master.strings.bank"]
+
+[node name="LevelGenerator" parent="." instance=ExtResource("8_v158k")]
+position = Vector2(138, 106)
+
+[node name="Finger" parent="." instance=ExtResource("4_3dryh")]
+position = Vector2(20, 1897)
+scale = Vector2(14.25, 14.25)
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Tracks/Level"
+event_guid = "{ba75c4a0-03f7-467d-b87f-94d1e45c7291}"
+attached = false
+autoplay = true
+volume = 0.0
+fmod_parameters/mode/id = 2641829509537439364
+fmod_parameters/mode = "metal"
+fmod_parameters/mode/labels = PackedStringArray("classic", "classic_slow", "classic_saturated", "metal", "metal_slow")
+fmod_parameters/mode/variant_type = 4
+fmod_parameters/pause/id = -4552771270613424376
+fmod_parameters/pause = 0
+fmod_parameters/pause/variant_type = 2

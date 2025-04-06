@@ -67,7 +67,8 @@ z_index = 5
 collision_layer = 64
 script = ExtResource("1_fqqoy")
 launch_feedback_node = NodePath("LaunchFeedbackDir")
-min_size = 10.0
+min_size = 20.0
+max_size = 40.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 5

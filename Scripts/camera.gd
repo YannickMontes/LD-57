@@ -5,10 +5,12 @@ extends Camera2D
 @export var max_height_percentage_camera: float = 95.0
 @export var time_to_start_follow: float = 1.0
 @export var ease_speed: float = 2.0
+@export var min_speed_to_move = 5.0
 
 var player: Node2D
 var should_move_up: bool = false
 var elapsed_time: float = 0.0
+var is_moving = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,6 +31,7 @@ func _process(delta: float) -> void:
 		if elapsed_time > time_to_start_follow:
 			#var ease_time = (elapsed_time - time_to_start_follow) / max_ease_time
 			var new_y_position = lerp(cam_pos.y, player.global_position.y, delta * ease_speed)
+			is_moving = abs(new_y_position) - abs(global_position.y) > min_speed_to_move
 			global_position = Vector2(global_position.x, new_y_position)
 			if new_y_position < player.global_position.y:
 				should_move_up = false

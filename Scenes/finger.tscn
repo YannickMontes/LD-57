@@ -1,58 +1,51 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5lg7ftqs3erb"]
+[gd_scene load_steps=9 format=3 uid="uid://w2853hwmje86"]
 
 [ext_resource type="Script" uid="uid://cqg5876uc4k0q" path="res://Scripts/finger.gd" id="1_fewg3"]
 [ext_resource type="Texture2D" uid="uid://cjupcij4gu0im" path="res://Assets/Sprites/finger128.png" id="2_fewg3"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xb0o6"]
+[sub_resource type="Curve" id="Curve_fewg3"]
+_limits = [0.0, 1.0, 0.0, 3.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1.5, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_he3j1"]
 atlas = ExtResource("2_fewg3")
 region = Rect2(0, 0, 64, 128)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xb0o6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_fewg3"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xb0o6")
+"texture": SubResource("AtlasTexture_he3j1")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_fewg3"]
-resource_name = "idle"
-length = 0.2
+[sub_resource type="Animation" id="Animation_he3j1"]
+resource_name = "Idle"
+length = 0.16
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../CollisionPolygon2D:position")
+tracks/0/path = NodePath("AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(-0.25, 0), Vector2(0, 0), Vector2(0.25, 0), Vector2(0, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 48), Vector2(-0.25, 48), Vector2(0, 48), Vector2(0.25, 48), Vector2(0, 48)]
-}
 
-[sub_resource type="Animation" id="Animation_xb0o6"]
+[sub_resource type="Animation" id="Animation_fewg3"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../CollisionPolygon2D:position")
+tracks/0/path = NodePath("AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -61,45 +54,38 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 48)]
-}
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_oon6q"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xb0o6"]
 _data = {
-&"RESET": SubResource("Animation_xb0o6"),
-&"idle": SubResource("Animation_fewg3")
+&"Idle": SubResource("Animation_he3j1"),
+&"RESET": SubResource("Animation_fewg3")
 }
 
 [node name="Finger" type="Area2D"]
 collision_mask = 64
 script = ExtResource("1_fewg3")
-speed_inside_screen = 80.0
+speed_inside_screen = 210.0
+max_speed_inside_screen = 300.0
+distance_curve_out_screen = SubResource("Curve_fewg3")
+max_down_distance = 100.0
+max_bot_cam_distance = 750.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 48)
-sprite_frames = SubResource("SpriteFrames_xb0o6")
+sprite_frames = SubResource("SpriteFrames_fewg3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-scale = Vector2(12.3375, 1)
-polygon = PackedVector2Array(-2.02634, 111, -2.02634, -1, 0, -15, 1.78318, -6, 1.86424, 112)
+polygon = PackedVector2Array(-25, 64, -26, -45, -2, -63, 22, -45, 23, 64)
 
-[node name="ThresholdScreen" type="Node2D" parent="."]
+[node name="MaxSpeedThreshold" type="Node2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="OutOfScreenThreshold" type="Node2D" parent="."]
+position = Vector2(0, -43)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../AnimatedSprite2D")
 libraries = {
-&"": SubResource("AnimationLibrary_oon6q")
+&"": SubResource("AnimationLibrary_xb0o6")
 }
-autoplay = "idle"
+autoplay = "Idle"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

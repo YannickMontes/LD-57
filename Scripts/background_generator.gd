@@ -7,7 +7,6 @@ var texture_y_size = 0.0
 var next_spawn_pos = 0.0
 var sprites: Array
 
-
 func _ready() -> void:
 	texture_y_size = texture_bg.get_height()
 

@@ -10,7 +10,7 @@ extends CharacterBody2D
 @export var time_reduce_time_scale_on_obstacle_hit: float = 0.8
 @export var up_velocity_on_obtacle_hit: float = -450.0
 
-var current_size := 15:
+var current_size := 0:
 	set(value):
 		current_size = clamp(value, min_size, max_size)
 
@@ -19,6 +19,9 @@ var begin_hold_position = Vector2.ZERO
 var current_launch_direction = Vector2.ZERO
 var is_currently_on_wall = false
 var is_affected_by_gravity = false
+
+func _ready() -> void:
+	current_size = min_size
 
 func _physics_process(delta: float) -> void:
 	if not GameManager.is_game_running:

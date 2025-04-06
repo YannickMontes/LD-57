@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2r8tbu10uibm"]
+
+[ext_resource type="Script" uid="uid://bnygi4tt2g10r" path="res://Scripts/obstacle.gd" id="1_2agvl"]
+[ext_resource type="Texture2D" uid="uid://x6kt6sfacr8i" path="res://Assets/Sprites/tilsemap.png" id="2_yvsu7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2agvl"]
+atlas = ExtResource("2_yvsu7")
+region = Rect2(0, 160, 96, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6db2n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2agvl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Hair3" type="Area2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_2agvl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6db2n")
+offset = Vector2(48, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 0, -15, 10, -15, 18, -14, 32, -10, 42, -8, 53, -14, 64, -15, 86, -5, 87, 8, 77, 14, 58, 7, 48, 15, 27, 13, 0, 13)
