@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwr5nusocejj0"]
+[gd_scene load_steps=13 format=3 uid="uid://bwr5nusocejj0"]
 
 [ext_resource type="Script" uid="uid://chvs7nvi6tjix" path="res://Scripts/player_bogger.gd" id="1_fqqoy"]
 [ext_resource type="Texture2D" uid="uid://ch0s7ysijj1cc" path="res://Assets/Sprites/boggers54.png" id="2_nxmd7"]
@@ -66,18 +66,29 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_0te08"]
 radius = 25.0
 
+[sub_resource type="Animation" id="Animation_o3yry"]
+resource_name = "arrow"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_syegs"]
+_data = {
+&"arrow": SubResource("Animation_o3yry")
+}
+
 [node name="PlayerBogger" type="CharacterBody2D" node_paths=PackedStringArray("launch_feedback_node") groups=["player"]]
 z_index = 5
 collision_layer = 64
 script = ExtResource("1_fqqoy")
+gravity_mult = 1.4
 launch_feedback_node = NodePath("LaunchFeedbackDir")
 stretch_curve_force = SubResource("Curve_nxmd7")
 min_stretch_force = 700.0
-max_stretch_force = 4000.0
-fuel_consumption_by_seconds = 20.0
+max_stretch_force = 20000.0
+fuel_consumption_by_seconds = 35.0
 min_scale = 1.5
 max_scale = 4.0
-max_scale_arrow = 0.3
+time_with_no_consumption = 0.1
+min_scale_arrow = 2.0
+max_scale_arrow = 10.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 5
@@ -98,6 +109,13 @@ shape = SubResource("CircleShape2D_0te08")
 
 [node name="SpriteArrow" type="Sprite2D" parent="LaunchFeedbackDir"]
 rotation = -1.5708
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_nxmd7")
 centered = false
 offset = Vector2(0, -64)
+
+[node name="ArrowAnim" type="AnimationPlayer" parent="LaunchFeedbackDir"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_syegs")
+}

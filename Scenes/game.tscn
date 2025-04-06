@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bwr5nusocejj0" path="res://Scenes/player_bogger.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://w2853hwmje86" path="res://Scenes/finger.tscn" id="4_3dryh"]
-[ext_resource type="Script" uid="uid://cve4pq232jbme" path="res://Scripts/camera.gd" id="5_wowpa"]
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="5_wowpa"]
 [ext_resource type="Texture2D" uid="uid://bjiu5gu70yr4f" path="res://Assets/Sprites/black_bar.png" id="6_1l0tm"]
-[ext_resource type="PackedScene" uid="uid://ckffxca03cye0" path="res://Scenes/background_generator.tscn" id="7_1l0tm"]
+[ext_resource type="PackedScene" path="res://Scenes/background_generator.tscn" id="7_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://dvd2pjqw0a61u" path="res://Scenes/level_generator.tscn" id="8_v158k"]
 
 [sub_resource type="TileSet" id="TileSet_ebmjs"]
@@ -40,8 +40,8 @@ zoom = Vector2(0.7, 0.7)
 position_smoothing_speed = 50.0
 script = ExtResource("5_wowpa")
 player_path = NodePath("../PlayerBogger")
-time_to_start_follow = 0.4
-ease_speed = 4.0
+time_to_start_follow = 0.1
+ease_speed = 5.0
 min_speed_to_move = 1.0
 
 [node name="BlackBar" type="Sprite2D" parent="Camera2D"]
@@ -75,6 +75,7 @@ event_name = "event:/Tracks/Level"
 event_guid = "{ba75c4a0-03f7-467d-b87f-94d1e45c7291}"
 attached = false
 autoplay = true
+volume = 0.0
 fmod_parameters/mode/id = 2641829509537439364
 fmod_parameters/mode = "classic"
 fmod_parameters/mode/labels = PackedStringArray("classic", "classic_slow", "classic_saturated", "metal", "metal_slow")
