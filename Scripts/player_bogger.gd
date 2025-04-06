@@ -3,6 +3,7 @@ class_name Player
 extends CharacterBody2D
 
 @export var gravity_mult_on_stick_wall: float = 0.3
+@export var gravity_mult: float = 1.0
 @export var max_velocity_on_stick_wall: float = 20.0
 @export var launch_force: float = 10000.0
 @export var launch_feedback_node: Node2D
@@ -89,7 +90,7 @@ func on_obstacle_end_collide(obstacle: Obstacle) -> void:
 
 func handle_gravity(delta: float):
 	if is_currently_on_wall || is_affected_by_gravity:
-		var gravity_mult: float = 1.0
+		var gravity_mult: float = gravity_mult
 		if(is_currently_on_wall):
 			gravity_mult = gravity_mult_on_stick_wall
 		velocity += get_gravity() * delta * gravity_mult
