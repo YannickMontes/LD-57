@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{03ceaf08-4e8c-4e63-83ec-36ff68ac8fe9}">
+		<property name="assetPath">
+			<value>stretch.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>46.053877551020406</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{e1ae6066-e2c3-46d6-a32c-0af6ebfb1454}</destination>
+		</relationship>
+	</object>
+</objects>

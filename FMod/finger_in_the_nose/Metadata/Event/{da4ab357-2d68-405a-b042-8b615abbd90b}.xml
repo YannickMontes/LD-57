@@ -122,7 +122,7 @@
 	<object class="MixerBusFader" id="{3dcc5f74-f656-4a70-badb-fb24598d72b4}" />
 	<object class="SingleSound" id="{c643a1c5-2327-43e1-8f32-17afe6287839}">
 		<property name="startOffset">
-			<value>19.5</value>
+			<value>20.5</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{5f0ef838-b551-4212-9ef0-2ef43f5aca64}</destination>
@@ -130,7 +130,7 @@
 	</object>
 	<object class="SingleSound" id="{8957b4e1-0efa-49db-9e09-0521301a28ba}">
 		<property name="startOffset">
-			<value>20</value>
+			<value>21.5</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{58a15ef8-4bb5-48c3-997d-d31ff8c065b5}</destination>
@@ -138,7 +138,7 @@
 	</object>
 	<object class="SingleSound" id="{975b8a75-7174-4a0b-b3ef-e389d77f3bb4}">
 		<property name="startOffset">
-			<value>22</value>
+			<value>23</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{8f0af1f7-fe1c-4c9d-b47c-aa3b544347f1}</destination>
