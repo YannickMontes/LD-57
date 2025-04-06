@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{8eaae008-6726-4464-a6e6-6db299687a3d}">
+		<property name="name">
+			<value>mode</value>
+		</property>
+		<relationship name="folder">
+			<destination>{197f6299-013c-487c-a457-9394b4bb7ccb}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{1b154bcd-8eaa-46f0-a950-55c7669c82e6}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{1b154bcd-8eaa-46f0-a950-55c7669c82e6}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>5</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>classic</value>
+			<value>classic_slow</value>
+			<value>classic_saturated</value>
+			<value>metal</value>
+			<value>metal_slow</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
