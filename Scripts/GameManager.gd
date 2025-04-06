@@ -17,7 +17,7 @@ func _process(delta: float) -> void:
 
 func retrieve_walls():
 	var left_walls = get_tree().get_nodes_in_group("wall_left")
-	var right_walls = get_tree().get_nodes_in_group("wall_left")
+	var right_walls = get_tree().get_nodes_in_group("wall_right")
 	if left_walls.size() > 0:
 		left_wall = left_walls[0]
 	if right_walls.size() > 0:

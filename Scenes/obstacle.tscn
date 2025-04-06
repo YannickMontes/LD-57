@@ -11,6 +11,7 @@ collision_mask = 64
 script = ExtResource("1_15o2q")
 size_to_add = -1
 disappear_on_collide = true
+slow_percentage = 0.9
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)

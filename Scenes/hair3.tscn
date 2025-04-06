@@ -20,7 +20,10 @@ animations = [{
 
 [node name="Hair3" type="Area2D"]
 scale = Vector2(4, 4)
+collision_mask = 64
 script = ExtResource("1_2agvl")
+behavior = 1
+slow_percentage = 0.3
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6db2n")
@@ -28,3 +31,5 @@ offset = Vector2(48, 0)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, 0, 0, -15, 10, -15, 18, -14, 32, -10, 42, -8, 53, -14, 64, -15, 86, -5, 87, 8, 77, 14, 58, 7, 48, 15, 27, 13, 0, 13)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -9,7 +9,7 @@ extends Node2D
 @export var elements_range_x_percentage: float
 @export var advance_generation: float
 
-var next_y_spawn_pos: float = 0
+var next_y_spawn_pos: float = 0.0
 
 func _process(delta: float) -> void:
 	var y_top_camera = get_viewport().get_camera_2d().global_position.y - get_viewport_rect().size.y / 2.0
@@ -46,6 +46,7 @@ func generate_obstacles() -> void:
 		var left_max_x = elements_range_x_percentage * GameManager.right_wall.global_position.x
 		var y_spawn = randf_range(obstacle_spawn_interval.x, obstacle_spawn_interval.y)
 		var x_spawn = randf_range(left_min_x, left_max_x)
+		print(x_spawn)
 		var obstacle = obstacle_node.instantiate()
 		add_child(obstacle)
 		current_generation_pos -= y_spawn

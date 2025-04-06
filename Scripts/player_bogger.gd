@@ -1,3 +1,5 @@
+class_name Player
+
 extends CharacterBody2D
 
 @export var gravity_mult_on_stick_wall: float = 0.3
@@ -44,12 +46,16 @@ func _physics_process(delta: float) -> void:
 func add_size(size):
 	current_size += size
 	
-func on_obstacle_collide():
-	velocity = Vector2.ZERO
-	velocity.y = up_velocity_on_obtacle_hit
-	is_affected_by_gravity = true
-	TimeScaleManager.set_time_scale_for_duration(time_scale_on_obstacle_hit
-	 , time_reduce_time_scale_on_obstacle_hit)
+func on_obstacle_collide(obstacle: Obstacle):
+	if obstacle.behavior == Obstacle.Behavior.SLOW:
+		velocity = Vector2.ZERO
+		is_affected_by_gravity = false
+	elif obstacle.behavior == Obstacle.Behavior.STOP:
+		velocity = Vector2.ZERO
+		velocity.y = up_velocity_on_obtacle_hit
+		TimeScaleManager.set_time_scale_for_duration(time_scale_on_obstacle_hit
+		 , time_reduce_time_scale_on_obstacle_hit)
+		is_affected_by_gravity = true
 
 func handle_gravity(delta: float):
 	if is_currently_on_wall || is_affected_by_gravity:
