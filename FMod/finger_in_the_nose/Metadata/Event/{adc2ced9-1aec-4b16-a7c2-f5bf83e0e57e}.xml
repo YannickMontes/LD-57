@@ -5,7 +5,7 @@
 			<value>Stretch</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{5d88f9d5-6b37-4a8e-a083-4c64dfa48eb2}</destination>
@@ -118,9 +118,17 @@
 	<object class="MixerBusEffectChain" id="{37952436-814f-48b6-86e5-7854e4a9dc8b}">
 		<relationship name="effects">
 			<destination>{17ff6cd9-2b9f-4f37-8bb3-152f7482addb}</destination>
+			<destination>{40865f81-6db5-4d34-8189-e404da38d5c3}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{ca449232-a46c-410b-9928-542321fce836}" />
+	<object class="MixerBusPanner" id="{ca449232-a46c-410b-9928-542321fce836}">
+		<property name="surroundPanDirection">
+			<value>167.471191</value>
+		</property>
+		<property name="surroundPanExtent">
+			<value>355.434021</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{a722cd56-a0ec-4d9e-8260-6ef47d808be7}" />
 	<object class="FadeCurve" id="{f9b4d22b-3f5e-4b98-9194-63e986399855}">
 		<relationship name="startPoint">
@@ -158,6 +166,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{5c3e58a4-8a81-45bb-b301-79a66ca26f73}" />
 	<object class="MixerBusFader" id="{17ff6cd9-2b9f-4f37-8bb3-152f7482addb}" />
+	<object class="SpatialiserEffect" id="{40865f81-6db5-4d34-8189-e404da38d5c3}">
+		<property name="panBlend">
+			<value>0.419999987</value>
+		</property>
+		<property name="userStereoSeparation">
+			<value>12</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{30919219-a5b8-499b-8ab7-9e3328d2dbae}">
 		<property name="position">
 			<value>19.400000000000002</value>
