@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckffxca03cye0"]
+[gd_scene load_steps=4 format=3 uid="uid://ckffxca03cye0"]
 
 [ext_resource type="Script" uid="uid://bemcmkitf2sow" path="res://Scripts/background_generator.gd" id="1_vfmtd"]
 [ext_resource type="Texture2D" uid="uid://coqnwqpgtv3l" path="res://Assets/Sprites/bg.png" id="2_pnxgw"]
+[ext_resource type="PackedScene" uid="uid://nwq7mtsu5fkx" path="res://Scenes/bg/bgvar1.tscn" id="3_546xa"]
 
 [node name="BackgroundGenerator" type="Node2D"]
 script = ExtResource("1_vfmtd")
 texture_bg = ExtResource("2_pnxgw")
+possibles_hairs = Array[PackedScene]([ExtResource("3_546xa")])
 nb_spawn_advance = 3

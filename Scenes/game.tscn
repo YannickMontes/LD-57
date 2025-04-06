@@ -1,10 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://cc6hvkl72ckel"]
+[gd_scene load_steps=12 format=3 uid="uid://cc6hvkl72ckel"]
 
+[ext_resource type="PackedScene" uid="uid://nwq7mtsu5fkx" path="res://Scenes/bg/bgvar1.tscn" id="1_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://bwr5nusocejj0" path="res://Scenes/player_bogger.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://w2853hwmje86" path="res://Scenes/finger.tscn" id="4_3dryh"]
-[ext_resource type="Script" path="res://Scripts/camera.gd" id="5_wowpa"]
+[ext_resource type="Script" uid="uid://cve4pq232jbme" path="res://Scripts/camera.gd" id="5_wowpa"]
 [ext_resource type="Texture2D" uid="uid://bjiu5gu70yr4f" path="res://Assets/Sprites/black_bar.png" id="6_1l0tm"]
-[ext_resource type="PackedScene" path="res://Scenes/background_generator.tscn" id="7_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://ciq1q2f0v5mym" path="res://Scenes/bg/bgvar2.tscn" id="6_h4fw4"]
+[ext_resource type="PackedScene" uid="uid://ckffxca03cye0" path="res://Scenes/background_generator.tscn" id="7_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://b6w747wv00p3f" path="res://Scenes/bg/bgvar3.tscn" id="7_ldgsr"]
 [ext_resource type="PackedScene" uid="uid://dvd2pjqw0a61u" path="res://Scenes/level_generator.tscn" id="8_v158k"]
 
 [sub_resource type="TileSet" id="TileSet_ebmjs"]
@@ -59,6 +62,7 @@ centered = false
 [node name="FmodListener2D" type="FmodListener2D" parent="Camera2D"]
 
 [node name="BackgroundGenerator" parent="." instance=ExtResource("7_1l0tm")]
+possibles_hairs = Array[PackedScene]([ExtResource("1_1l0tm"), ExtResource("6_h4fw4"), ExtResource("7_ldgsr")])
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://FMod/finger_in_the_nose/Build/Desktop/Master.bank", "res://FMod/finger_in_the_nose/Build/Desktop/Master.strings.bank"]
