@@ -46,7 +46,6 @@ func generate_obstacles() -> void:
 		var left_max_x = elements_range_x_percentage * GameManager.right_wall.global_position.x
 		var y_spawn = randf_range(obstacle_spawn_interval.x, obstacle_spawn_interval.y)
 		var x_spawn = randf_range(left_min_x, left_max_x)
-		print(x_spawn)
 		var obstacle = obstacle_node.instantiate()
 		add_child(obstacle)
 		current_generation_pos -= y_spawn

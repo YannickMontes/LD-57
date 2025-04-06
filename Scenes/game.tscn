@@ -42,6 +42,7 @@ script = ExtResource("5_wowpa")
 player_path = NodePath("../PlayerBogger")
 time_to_start_follow = 0.4
 ease_speed = 4.0
+min_speed_to_move = 1.0
 
 [node name="BlackBar" type="Sprite2D" parent="Camera2D"]
 position = Vector2(-494, 1978)

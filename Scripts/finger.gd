@@ -4,8 +4,7 @@ extends Area2D
 @export var max_speed_inside_screen: float = 5.0 
 @export var distance_curve_out_screen: Curve
 @export var max_down_distance: float = 20.0
-@export var max_bot_cam_distance: float = 800.0
-
+@export var max_bot_cam_distance: float = 600.0
 @onready var threshold_out_screen: Node2D = $OutOfScreenThreshold
 @onready var threshold_max_speed: Node2D = $MaxSpeedThreshold
 
@@ -31,20 +30,20 @@ func _process(delta: float) -> void:
 		elapsed_time_out_screen += delta
 	else:
 		elapsed_time_out_screen = 0.0
-	
-	if not camera.is_moving:
-		var speed = speed_inside_screen
-		if not is_node_on_screen(threshold_max_speed):
-			speed = max_speed_inside_screen
-		var speed_on_frame = -1.0 * (speed * delta)
-		global_position = Vector2(global_position.x, global_position.y + speed_on_frame)
+
+	#if not camera.is_moving:
+	var speed = speed_inside_screen
+	if not is_node_on_screen(threshold_max_speed):
+		speed = max_speed_inside_screen
+	var speed_on_frame = -1.0 * (speed * delta)
+	global_position = Vector2(global_position.x, global_position.y + speed_on_frame)
 	
 	var cam_bot_pos = get_bottom_camera_world_pos()
 	last_distance_bot_cam = clamp(abs(cam_bot_pos - global_position.y),0 , max_bot_cam_distance)
-	
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
-		get_tree().reload_current_scene()
+		GameManager.restart()
 		
 func is_node_on_screen(node: Node2D) -> bool:
 	var camera = get_viewport().get_camera_2d()

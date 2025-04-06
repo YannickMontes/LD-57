@@ -9,7 +9,7 @@ radius = 32.0
 [node name="Bonus" type="Area2D"]
 collision_mask = 64
 script = ExtResource("1_q22jy")
-size_to_add = 1
+fuel_change = 30
 disappear_on_collide = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

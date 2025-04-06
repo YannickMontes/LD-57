@@ -9,7 +9,6 @@ radius = 32.0
 [node name="Obstacle" type="Area2D"]
 collision_mask = 64
 script = ExtResource("1_15o2q")
-size_to_add = -1
 disappear_on_collide = true
 slow_percentage = 0.9
 
@@ -21,3 +20,4 @@ texture = ExtResource("2_2p81s")
 shape = SubResource("CircleShape2D_2p81s")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -64,8 +64,8 @@ _data = {
 [node name="Finger" type="Area2D"]
 collision_mask = 64
 script = ExtResource("1_fewg3")
-speed_inside_screen = 210.0
-max_speed_inside_screen = 300.0
+speed_inside_screen = 280.0
+max_speed_inside_screen = 600.0
 distance_curve_out_screen = SubResource("Curve_fewg3")
 max_down_distance = 100.0
 max_bot_cam_distance = 750.0

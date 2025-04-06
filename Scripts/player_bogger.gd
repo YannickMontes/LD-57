@@ -6,15 +6,23 @@ extends CharacterBody2D
 @export var max_velocity_on_stick_wall: float = 20.0
 @export var launch_force: float = 10000.0
 @export var launch_feedback_node: Node2D
-@export var min_size = 1.0
-@export var max_size = 30.0
 @export var time_scale_on_obstacle_hit: float = 0.2
 @export var time_reduce_time_scale_on_obstacle_hit: float = 0.8
 @export var up_velocity_on_obtacle_hit: float = -450.0
+@export var stretch_curve_force:Curve
+@export var min_stretch_force: float = 100.0
+@export var max_stretch_force: float = 100.0
+@export var fuel_consumption_by_seconds:float = 33.0
+@export var min_scale:float = 2.0
+@export var max_scale:float = 5.0
+@export var time_with_no_consumption:float = 0.3
 
-var current_size := 0:
-	set(value):
-		current_size = clamp(value, min_size, max_size)
+@export var min_scale_arrow = 0.1
+@export var max_scale_arrow = 0.4
+
+@onready var sprite_arrow: Node2D = $LaunchFeedbackDir/SpriteArrow
+
+var time_since_stretch = 0.0
 
 var is_holding_click = false
 var begin_hold_position = Vector2.ZERO
@@ -22,9 +30,13 @@ var current_launch_direction = Vector2.ZERO
 var is_currently_on_wall = false
 var is_affected_by_gravity = false
 
-func _ready() -> void:
-	current_size = min_size
+var max_fuel_charge_time: float:
+	get:
+		return GameManager.max_fuel / fuel_consumption_by_seconds
 
+func _ready() -> void:
+	pass
+	
 func _physics_process(delta: float) -> void:
 	if not GameManager.is_game_running:
 		return
@@ -36,26 +48,39 @@ func _physics_process(delta: float) -> void:
 	
 	handle_gravity(delta)
 		
-	handle_inputs()
+	handle_inputs(delta)
+	#print(time_since_stretch)
+	
+	if is_holding_click:
+		launch_feedback_node.visible = current_launch_direction != Vector2.ZERO
+		var arrow_scale = lerp(min_scale_arrow, max_scale_arrow, time_since_stretch / max_fuel_charge_time)
+		arrow_scale = clamp(arrow_scale, min_scale_arrow, max_scale_arrow)
+		sprite_arrow.scale = Vector2(arrow_scale, arrow_scale)
+		GameManager.current_fuel -= fuel_consumption_by_seconds * delta
+		if GameManager.current_fuel == 0:
+			launch_bogger()
+	else:
+		launch_feedback_node.visible = false
 		
-	launch_feedback_node.visible = is_holding_click && current_launch_direction != Vector2.ZERO;
-	scale = Vector2.ONE * (current_size / 10.0)
-
+	var new_scale = lerp(min_scale, max_scale, GameManager.current_fuel_percentage)
+	scale = Vector2(new_scale, new_scale)
 	move_and_slide()
-
-func add_size(size):
-	current_size += size
 	
 func on_obstacle_collide(obstacle: Obstacle):
 	if obstacle.behavior == Obstacle.Behavior.SLOW:
 		velocity = Vector2.ZERO
-		is_affected_by_gravity = false
+		is_affected_by_gravity = true
+		is_currently_on_wall = true
 	elif obstacle.behavior == Obstacle.Behavior.STOP:
 		velocity = Vector2.ZERO
 		velocity.y = up_velocity_on_obtacle_hit
 		TimeScaleManager.set_time_scale_for_duration(time_scale_on_obstacle_hit
 		 , time_reduce_time_scale_on_obstacle_hit)
 		is_affected_by_gravity = true
+		
+func on_obstacle_end_collide(obstacle: Obstacle) -> void:
+	if obstacle.behavior == Obstacle.Behavior.SLOW:
+		is_currently_on_wall = false
 
 func handle_gravity(delta: float):
 	if is_currently_on_wall || is_affected_by_gravity:
@@ -66,16 +91,14 @@ func handle_gravity(delta: float):
 		if is_currently_on_wall && velocity.y >= max_velocity_on_stick_wall:
 			velocity.y = max_velocity_on_stick_wall
 			
-func handle_inputs():
+func handle_inputs(delta: float):
 	if Input.is_action_just_pressed("click"):
 		is_holding_click = true
 		begin_hold_position = get_viewport().get_mouse_position()
+		time_since_stretch = 0.0
 		
-	if Input.is_action_just_released("click"):
-		is_holding_click = false
-		velocity = current_launch_direction.normalized() * launch_force
-		is_currently_on_wall = false
-		is_affected_by_gravity = true
+	if Input.is_action_just_released("click") && is_holding_click:
+		launch_bogger()
 		
 	if is_holding_click:
 		var currentMousePos = get_viewport().get_mouse_position()
@@ -83,3 +106,12 @@ func handle_inputs():
 		var angle = Vector2.UP.angle_to(current_launch_direction.normalized())
 		var angleDeg = rad_to_deg(angle)
 		launch_feedback_node.rotation_degrees = angleDeg
+		time_since_stretch += delta
+
+func launch_bogger():
+	is_holding_click = false
+	var force = lerp(min_stretch_force, max_stretch_force, stretch_curve_force.sample(time_since_stretch / max_fuel_charge_time))
+	velocity = current_launch_direction.normalized() * force
+	is_currently_on_wall = false
+	is_affected_by_gravity = true
+	time_since_stretch = 0.0
