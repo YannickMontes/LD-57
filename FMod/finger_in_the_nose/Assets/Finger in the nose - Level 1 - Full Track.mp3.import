@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dhivistg06hq7"
+path="res://.godot/imported/Finger in the nose - Level 1 - Full Track.mp3-663aec098063b3ef73c2b60378b660b9.mp3str"
+
+[deps]
+
+source_file="res://FMod/finger_in_the_nose/Assets/Finger in the nose - Level 1 - Full Track.mp3"
+dest_files=["res://.godot/imported/Finger in the nose - Level 1 - Full Track.mp3-663aec098063b3ef73c2b60378b660b9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

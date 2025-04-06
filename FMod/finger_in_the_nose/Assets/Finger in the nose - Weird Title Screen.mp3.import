@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dcmy6buayuqh"
+path="res://.godot/imported/Finger in the nose - Weird Title Screen.mp3-88aac6c44422533569906fe99a4199e7.mp3str"
+
+[deps]
+
+source_file="res://FMod/finger_in_the_nose/Assets/Finger in the nose - Weird Title Screen.mp3"
+dest_files=["res://.godot/imported/Finger in the nose - Weird Title Screen.mp3-88aac6c44422533569906fe99a4199e7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

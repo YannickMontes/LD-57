@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dbavmeuj0a76v"
+path="res://.godot/imported/Finger in the nose - Level 1 - Slow Loop.mp3-9d36bf6523168443d8fd7c50cae4a850.mp3str"
+
+[deps]
+
+source_file="res://FMod/finger_in_the_nose/Assets/Finger in the nose - Level 1 - Slow Loop.mp3"
+dest_files=["res://.godot/imported/Finger in the nose - Level 1 - Slow Loop.mp3-9d36bf6523168443d8fd7c50cae4a850.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
