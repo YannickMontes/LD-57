@@ -14,17 +14,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var camera_y = get_viewport().get_camera_2d().get_screen_center_position().y
-	if camera_y <= next_spawn_pos:
+	if camera_y <= next_spawn_pos + texture_y_size:
 		for i in range(nb_spawn_advance):
-			if sprites.size() >= nb_spawn_advance:
-				for j in range(nb_spawn_advance):
-					var index = nb_spawn_advance -1 - j
-					sprites[index].queue_free()
-					sprites.remove_at(index)
-					hairs[index+1].queue_free()
-					hairs[index].queue_free()
-					hairs.remove_at(index + 1)
-					hairs.remove_at(index)
 			var bg = Sprite2D.new()
 			bg.z_index = -1
 			bg.texture = texture_bg
@@ -44,6 +35,12 @@ func _process(delta: float) -> void:
 			hair_right.scale *= -1
 			add_child(hair_right)
 			hairs.append(hair_right)
-			
-			if i < nb_spawn_advance - 2:
-				next_spawn_pos -= texture_y_size
+			next_spawn_pos -= texture_y_size
+		while sprites.size() > nb_spawn_advance + 1:
+			var index = 0
+			sprites[index].queue_free()
+			sprites.remove_at(index)
+			hairs[index+1].queue_free()
+			hairs[index].queue_free()
+			hairs.remove_at(index + 1)
+			hairs.remove_at(index)

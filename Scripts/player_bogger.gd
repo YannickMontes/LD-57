@@ -83,6 +83,7 @@ func on_obstacle_collide(obstacle: Obstacle):
 		TimeScaleManager.set_time_scale_for_duration(time_scale_on_obstacle_hit
 		 , time_reduce_time_scale_on_obstacle_hit)
 		is_affected_by_gravity = true
+		GameManager.last_hit_timer = 0.0
 		
 func on_obstacle_end_collide(obstacle: Obstacle) -> void:
 	if obstacle.behavior == Obstacle.Behavior.SLOW:
