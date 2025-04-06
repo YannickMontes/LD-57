@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 		launch_feedback_node.visible = current_launch_direction != Vector2.ZERO
 		var arrow_scale = lerp(min_scale_arrow, max_scale_arrow, fuel_current_charge_time)
 		arrow_scale = clamp(arrow_scale, min_scale_arrow, max_scale_arrow)
-		sprite_arrow.scale = Vector2(arrow_scale, arrow_scale)
+		sprite_arrow.global_scale = Vector2(arrow_scale, arrow_scale)
 		if time_since_stretch > time_with_no_consumption:
 			GameManager.current_fuel -= fuel_consumption_by_seconds * delta
 			if GameManager.current_fuel == 0.0:
