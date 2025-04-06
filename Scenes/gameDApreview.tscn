@@ -65,7 +65,7 @@ shape = SubResource("WorldBoundaryShape2D_ebmjs")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-960, -256)
-zoom = Vector2(3, 3)
+zoom = Vector2(3.5, 3.5)
 limit_left = -5800
 limit_right = 5800
 limit_smoothed = true
