@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://cc6hvkl72ckel"]
+[gd_scene load_steps=13 format=3 uid="uid://cc6hvkl72ckel"]
 
 [ext_resource type="PackedScene" uid="uid://nwq7mtsu5fkx" path="res://Scenes/bg/bgvar1.tscn" id="1_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://bwr5nusocejj0" path="res://Scenes/player_bogger.tscn" id="1_ebmjs"]
 [ext_resource type="PackedScene" uid="uid://w2853hwmje86" path="res://Scenes/finger.tscn" id="4_3dryh"]
-[ext_resource type="Script" uid="uid://cve4pq232jbme" path="res://Scripts/camera.gd" id="5_wowpa"]
+[ext_resource type="Script" path="res://Scripts/camera.gd" id="5_wowpa"]
 [ext_resource type="Texture2D" uid="uid://bjiu5gu70yr4f" path="res://Assets/Sprites/black_bar.png" id="6_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://ciq1q2f0v5mym" path="res://Scenes/bg/bgvar2.tscn" id="6_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://ckffxca03cye0" path="res://Scenes/background_generator.tscn" id="7_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://b6w747wv00p3f" path="res://Scenes/bg/bgvar3.tscn" id="7_ldgsr"]
 [ext_resource type="PackedScene" uid="uid://dvd2pjqw0a61u" path="res://Scenes/level_generator.tscn" id="8_v158k"]
+[ext_resource type="FontFile" uid="uid://d057jv83pjbij" path="res://Assets/Font/melted_monster/Melted Monster.ttf" id="10_ldgsr"]
 
 [sub_resource type="TileSet" id="TileSet_ebmjs"]
 tile_size = Vector2i(64, 64)
@@ -87,3 +88,58 @@ fmod_parameters/mode/variant_type = 4
 fmod_parameters/pause/id = -4552771270613424376
 fmod_parameters/pause = 0.0
 fmod_parameters/pause/variant_type = 2
+
+[node name="ATH" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -481.0
+offset_top = -909.0
+offset_right = -441.0
+offset_bottom = -869.0
+
+[node name="title" type="VSplitContainer" parent="ATH"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SCORE" type="Label" parent="ATH/title"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 60
+text = "SCORE "
+
+[node name="COMBO" type="Label" parent="ATH/title"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 60
+text = "COMBO x"
+
+[node name="values" type="VSplitContainer" parent="ATH"]
+layout_mode = 0
+offset_left = 238.0
+offset_right = 457.0
+offset_bottom = 164.0
+
+[node name="score_value" type="Label" parent="ATH/values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 60
+text = "2564"
+
+[node name="combo_value" type="Label" parent="ATH/values"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 60
+text = "1"
