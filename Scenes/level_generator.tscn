@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dvd2pjqw0a61u"]
+[gd_scene load_steps=10 format=3 uid="uid://dvd2pjqw0a61u"]
 
 [ext_resource type="Script" uid="uid://c4q51bf0sf54k" path="res://Scripts/level_generator.gd" id="1_xgtxp"]
 [ext_resource type="PackedScene" uid="uid://cnfp2pnxina1" path="res://Scenes/hair1.tscn" id="2_5lsef"]
@@ -6,12 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://de7a0kt5nkse6" path="res://Scenes/hair2.tscn" id="3_ibufi"]
 [ext_resource type="PackedScene" uid="uid://bntokih1kowfe" path="res://Scenes/obstacle.tscn" id="3_kp8js"]
 [ext_resource type="PackedScene" uid="uid://b2r8tbu10uibm" path="res://Scenes/hair3.tscn" id="4_hxbet"]
+[ext_resource type="PackedScene" uid="uid://dmagoe84vhiwx" path="res://Scenes/hair4.tscn" id="7_j62gx"]
+[ext_resource type="PackedScene" uid="uid://c7clvs0mucjfw" path="res://Scenes/hair5.tscn" id="8_whj25"]
+[ext_resource type="PackedScene" uid="uid://wflbon56qi8h" path="res://Scenes/hair6.tscn" id="9_iydtg"]
 
 [node name="LevelGenerator" type="Node2D" groups=["level_generator"]]
 script = ExtResource("1_xgtxp")
 bonus_node = ExtResource("2_hxbet")
 obstacle_node = ExtResource("3_kp8js")
-possible_wall_obstacles = Array[PackedScene]([ExtResource("2_5lsef"), ExtResource("3_ibufi"), ExtResource("4_hxbet")])
+possible_wall_obstacles = Array[PackedScene]([ExtResource("2_5lsef"), ExtResource("3_ibufi"), ExtResource("4_hxbet"), ExtResource("7_j62gx"), ExtResource("8_whj25"), ExtResource("9_iydtg"), ExtResource("3_ibufi"), ExtResource("4_hxbet"), ExtResource("2_5lsef"), ExtResource("2_5lsef"), ExtResource("2_5lsef"), ExtResource("2_5lsef"), ExtResource("3_ibufi")])
 bonus_spawn_interval = Vector2(500, 1000)
 obstacle_spawn_interval = Vector2(500, 1000)
 wall_obstacles_interval = Vector2(300, 800)
