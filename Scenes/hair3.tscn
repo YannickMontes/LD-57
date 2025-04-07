@@ -19,7 +19,7 @@ animations = [{
 }]
 
 [node name="Hair3" type="Area2D"]
-scale = Vector2(4, 4)
+scale = Vector2(3.4, 3.4)
 collision_mask = 64
 script = ExtResource("1_2agvl")
 behavior = 1
