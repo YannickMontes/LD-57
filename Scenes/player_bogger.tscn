@@ -253,7 +253,7 @@ max_scale = 4.0
 time_with_no_consumption = 0.1
 min_scale_arrow = 2.0
 max_scale_arrow = 10.0
-velocity_detect_wall_threshold = 1.0
+velocity_detect_wall_threshold = 2.0
 score_by_delta = ExtResource("2_bhgy2")
 score_multiplier = 100.0
 
