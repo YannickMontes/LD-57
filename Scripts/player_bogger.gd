@@ -26,6 +26,7 @@ extends CharacterBody2D
 @onready var sprite_arrow: Node2D = $LaunchFeedbackDir/SpriteArrow
 @onready var sprite_booger: Node2D = $PlayerSprite
 @onready var sprite_splash: Node2D = $PlayerSprite/SplashSprite
+@onready var sprite_hit: Node2D = $PlayerSprite/ColSprite
 @onready var raycast_left: RayCast2D = $RaycastLeft
 @onready var raycast_right: RayCast2D = $RaycastRight
 

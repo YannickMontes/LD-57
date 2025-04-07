@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bwr5nusocejj0"]
+[gd_scene load_steps=43 format=3 uid="uid://bwr5nusocejj0"]
 
 [ext_resource type="Script" uid="uid://chvs7nvi6tjix" path="res://Scripts/player_bogger.gd" id="1_fqqoy"]
 [ext_resource type="Texture2D" uid="uid://ch0s7ysijj1cc" path="res://Assets/Sprites/boggers54.png" id="2_nxmd7"]
@@ -11,6 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://batjy0u5ayaco" path="res://Assets/Sprites/splash4.png" id="8_7n8hk"]
 [ext_resource type="Texture2D" uid="uid://tmegvhpsbfn8" path="res://Assets/Sprites/splash5.png" id="9_xq48j"]
 [ext_resource type="Texture2D" uid="uid://cxjurfa2t78mi" path="res://Assets/Sprites/splash6.png" id="10_en3or"]
+[ext_resource type="Texture2D" uid="uid://os6coa61arkp" path="res://Assets/Sprites/splash3.png" id="11_th66d"]
+[ext_resource type="Texture2D" uid="uid://b1h28saxq1d41" path="res://Assets/Sprites/splash1.png" id="12_bhgy2"]
+[ext_resource type="Texture2D" uid="uid://m80b382nb0hj" path="res://Assets/Sprites/splash2.png" id="13_27c5e"]
 
 [sub_resource type="Curve" id="Curve_nxmd7"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -192,6 +195,35 @@ animations = [{
 "speed": 6.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_53wuv"]
+atlas = ExtResource("11_th66d")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2ad7"]
+atlas = ExtResource("12_bhgy2")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj17t"]
+atlas = ExtResource("13_27c5e")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1n4y5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53wuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2ad7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj17t")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_0te08"]
 radius = 25.0
 
@@ -241,6 +273,11 @@ visible = false
 sprite_frames = SubResource("SpriteFrames_53wuv")
 autoplay = "default"
 frame_progress = 0.862291
+
+[node name="ColSprite" type="AnimatedSprite2D" parent="PlayerSprite"]
+sprite_frames = SubResource("SpriteFrames_1n4y5")
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.78)
