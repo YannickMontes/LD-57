@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://de7a0kt5nkse6" path="res://Scenes/hair2.tscn" id="3_ibufi"]
 [ext_resource type="PackedScene" uid="uid://bntokih1kowfe" path="res://Scenes/obstacle.tscn" id="3_kp8js"]
 [ext_resource type="PackedScene" uid="uid://b2r8tbu10uibm" path="res://Scenes/hair3.tscn" id="4_hxbet"]
-[ext_resource type="PackedScene" path="res://Scenes/hair4.tscn" id="7_j62gx"]
-[ext_resource type="PackedScene" path="res://Scenes/hair5.tscn" id="8_whj25"]
-[ext_resource type="PackedScene" path="res://Scenes/hair6.tscn" id="9_iydtg"]
+[ext_resource type="PackedScene" uid="uid://dmagoe84vhiwx" path="res://Scenes/hair4.tscn" id="7_j62gx"]
+[ext_resource type="PackedScene" uid="uid://c7clvs0mucjfw" path="res://Scenes/hair5.tscn" id="8_whj25"]
+[ext_resource type="PackedScene" uid="uid://wflbon56qi8h" path="res://Scenes/hair6.tscn" id="9_iydtg"]
 
 [node name="LevelGenerator" type="Node2D" groups=["level_generator"]]
 script = ExtResource("1_xgtxp")

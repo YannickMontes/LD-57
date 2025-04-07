@@ -181,9 +181,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -374.0
-offset_top = -732.0
+offset_top = -921.0
 offset_right = 338.0
-offset_bottom = -229.0
+offset_bottom = -418.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
@@ -196,27 +196,183 @@ OVER"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="texte" type="VSplitContainer" parent="Camera2D/GameOver"]
+[node name="final_score_container" type="VSplitContainer" parent="Camera2D/GameOver"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -109.5
-offset_right = 109.5
-offset_bottom = 164.0
+offset_left = -253.0
+offset_top = -315.0
+offset_right = 253.0
+offset_bottom = -53.0
 grow_horizontal = 2
 
-[node name="RetryButton" type="MenuButton" parent="Camera2D/GameOver/texte"]
+[node name="score_final_texte" type="Label" parent="Camera2D/GameOver/final_score_container"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0.980392, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0.337255, 0, 1)
-theme_override_colors/font_color = Color(0.767889, 0.624891, 0, 1)
-theme_override_constants/outline_size = 90
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
 theme_override_fonts/font = ExtResource("10_ldgsr")
-theme_override_font_sizes/font_size = 130
-text = "Retry"
+theme_override_font_sizes/font_size = 100
+text = "your score"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ExitButton" type="MenuButton" parent="Camera2D/GameOver/texte"]
+[node name="score_final_value" type="Label" parent="Camera2D/GameOver/final_score_container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 100
+text = "200000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("11_rku1e")
+
+[node name="leaderboard" type="Control" parent="Camera2D/GameOver"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -502.0
+offset_top = 2.0
+offset_right = 494.0
+offset_bottom = 580.0
+
+[node name="top1_cont" type="HSplitContainer" parent="Camera2D/GameOver/leaderboard"]
+z_index = 15
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -204.0
+offset_right = 317.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="top1_texte" type="Label" parent="Camera2D/GameOver/leaderboard/top1_cont"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 60
+text = "top 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="top1_value" type="Label" parent="Camera2D/GameOver/leaderboard/top1_cont"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 60
+text = "200000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="top2_cont" type="HSplitContainer" parent="Camera2D/GameOver/leaderboard"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -84.0
+offset_right = 317.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="top2_texte" type="Label" parent="Camera2D/GameOver/leaderboard/top2_cont"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 60
+text = "top 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="top2_value" type="Label" parent="Camera2D/GameOver/leaderboard/top2_cont"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 60
+text = "200000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="top3_cont" type="HSplitContainer" parent="Camera2D/GameOver/leaderboard"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = 36.0
+offset_right = 317.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="top3_texte" type="Label" parent="Camera2D/GameOver/leaderboard/top3_cont"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 60
+text = "top 3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="top3_value" type="Label" parent="Camera2D/GameOver/leaderboard/top3_cont"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 60
+text = "200000000"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/GameOver"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.5
+offset_top = 565.0
+offset_right = 359.5
+offset_bottom = 736.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ExitButton" type="MenuButton" parent="Camera2D/GameOver/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0, 0.980392, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0.337255, 0, 1)
@@ -225,6 +381,20 @@ theme_override_constants/outline_size = 90
 theme_override_fonts/font = ExtResource("10_ldgsr")
 theme_override_font_sizes/font_size = 130
 text = "quit"
+
+[node name="VSeparator" type="VSeparator" parent="Camera2D/GameOver/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="RetryButton" type="MenuButton" parent="Camera2D/GameOver/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.337255, 0, 1)
+theme_override_colors/font_color = Color(0.767889, 0.624891, 0, 1)
+theme_override_constants/outline_size = 90
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 130
+text = "Retry"
 
 [node name="BlackBar" type="Sprite2D" parent="Camera2D"]
 position = Vector2(-494, 1978)
