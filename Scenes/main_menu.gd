@@ -12,9 +12,13 @@ func _ready() -> void:
 	exit_button.button_down.connect(on_exit_pressed)
 
 func on_start_pressed() -> void:
-	get_tree().change_scene_to_packed(start_level)
+	$Timer.start()
+	$StartEventEmmiter.play()
+	start_button.disabled = true
+	exit_button.disabled = true
 	
 func on_exit_pressed() -> void:
 	get_tree().quit()
-	
-	
+
+func _on_timer_timeout() -> void:
+	get_tree().change_scene_to_packed(start_level)

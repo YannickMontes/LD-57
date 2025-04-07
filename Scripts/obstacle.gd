@@ -17,6 +17,8 @@ func _on_body_entered(body: Node2D) -> void:
 		GameManager.current_fuel += fuel_change
 		if !is_positive:
 			body.on_obstacle_collide(self)
+		else:
+			body.launch_collect_event()
 		if disappear_on_collide:
 			queue_free()
 			

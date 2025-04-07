@@ -21,7 +21,11 @@ extends CharacterBody2D
 @export var min_scale_arrow = 0.1
 @export var max_scale_arrow = 0.4
 
+@export var velocity_detect_wall_threshold: float = 5.0
+
 @onready var sprite_arrow: Node2D = $LaunchFeedbackDir/SpriteArrow
+@onready var raycast_left: RayCast2D = $RaycastLeft
+@onready var raycast_right: RayCast2D = $RaycastRight
 
 var time_since_stretch = 0.0
 
@@ -46,15 +50,18 @@ func _physics_process(delta: float) -> void:
 	if not GameManager.is_game_running:
 		return
 		
+	if (raycast_left.is_colliding() && velocity.x < -velocity_detect_wall_threshold) || (raycast_right.is_colliding() && velocity.x > velocity_detect_wall_threshold):
+		play_impact_sfx()
+		print("detect wall")
+		
 	if is_on_wall() && !is_currently_on_wall:
 		is_currently_on_wall = true
 		is_affected_by_gravity = true
 		velocity = Vector2.ZERO
+		play_slide_sfx(true)
 	
 	handle_gravity(delta)
-		
 	handle_inputs(delta)
-	#print(time_since_stretch)
 	
 	if is_holding_click:
 		launch_feedback_node.visible = current_launch_direction != Vector2.ZERO
@@ -84,6 +91,7 @@ func on_obstacle_collide(obstacle: Obstacle):
 		 , time_reduce_time_scale_on_obstacle_hit)
 		is_affected_by_gravity = true
 		GameManager.last_hit_timer = 0.0
+		play_impact_sfx()
 		
 func on_obstacle_end_collide(obstacle: Obstacle) -> void:
 	if obstacle.behavior == Obstacle.Behavior.SLOW:
@@ -103,7 +111,8 @@ func handle_inputs(delta: float):
 		is_holding_click = true
 		begin_hold_position = get_viewport().get_mouse_position()
 		time_since_stretch = 0.0
-		
+		play_stretch_sfx(true)
+
 	if Input.is_action_just_released("click") && is_holding_click:
 		launch_bogger()
 		
@@ -122,3 +131,24 @@ func launch_bogger():
 	is_currently_on_wall = false
 	is_affected_by_gravity = true
 	time_since_stretch = 0.0
+	play_stretch_sfx(false)
+	$LaunchEventEmmiter.play()
+	play_slide_sfx(false)
+	
+func launch_collect_event() -> void:
+	$CollectEventEmmiter.play()
+	
+func play_stretch_sfx(play: bool) -> void:
+	if play:
+		$StretchEventEmmiter.play()
+	else:
+		$StretchEventEmmiter.stop()
+		
+func play_slide_sfx(play: bool) -> void:
+	if play:
+		$WallSlideEventEmmiter.play()
+	else:
+		$WallSlideEventEmmiter.stop()
+		
+func play_impact_sfx() -> void:
+	$ImpactEventEmmiter.play()

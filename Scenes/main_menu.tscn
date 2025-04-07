@@ -234,3 +234,12 @@ event_name = "event:/Tracks/Title Screen"
 event_guid = "{179ccb72-1648-4916-aec5-a480780f71fd}"
 attached = false
 autoplay = true
+
+[node name="StartEventEmmiter" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/FX/Start"
+event_guid = "{38a3fc39-4188-4a35-8822-2d9fd85dca5c}"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
