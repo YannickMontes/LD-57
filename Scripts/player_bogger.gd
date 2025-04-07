@@ -52,7 +52,6 @@ func _physics_process(delta: float) -> void:
 		
 	if (raycast_left.is_colliding() && velocity.x < -velocity_detect_wall_threshold) || (raycast_right.is_colliding() && velocity.x > velocity_detect_wall_threshold):
 		play_impact_sfx()
-		print("detect wall")
 		
 	if is_on_wall() && !is_currently_on_wall:
 		is_currently_on_wall = true
@@ -152,3 +151,9 @@ func play_slide_sfx(play: bool) -> void:
 		
 func play_impact_sfx() -> void:
 	$ImpactEventEmmiter.play()
+	
+func restart() -> void:
+	global_position = Vector2.ZERO
+	is_affected_by_gravity = false
+	is_currently_on_wall = false
+	is_holding_click = false

@@ -46,7 +46,7 @@ collision_layer = 17
 [node name="CollisionShape2D" type="CollisionShape2D" parent="wall_right"]
 shape = SubResource("WorldBoundaryShape2D_ebmjs")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." groups=["camera"]]
 zoom = Vector2(0.7, 0.7)
 position_smoothing_speed = 50.0
 script = ExtResource("5_wowpa")
@@ -216,10 +216,10 @@ bank_paths = ["res://FMod/finger_in_the_nose/Build/Desktop/Master.bank", "res://
 position = Vector2(138, 106)
 
 [node name="Finger" parent="." instance=ExtResource("4_3dryh")]
-position = Vector2(20, 1897)
+position = Vector2(0, 1897)
 scale = Vector2(14.25, 14.25)
 
-[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+[node name="MusicEventEmmiter" type="FmodEventEmitter2D" parent="." groups=["music"]]
 event_name = "event:/Tracks/Level"
 event_guid = "{ba75c4a0-03f7-467d-b87f-94d1e45c7291}"
 attached = false

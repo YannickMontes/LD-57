@@ -1,3 +1,5 @@
+class_name LevelGenerator
+
 extends Node2D
 
 @export var bonus_node: PackedScene
@@ -9,6 +11,7 @@ extends Node2D
 @export var elements_range_x_percentage: float
 @export var advance_generation: float
 
+var elements_spawned: Array[Node2D]
 var next_y_spawn_pos: float = 0.0
 
 func _process(delta: float) -> void:
@@ -38,6 +41,7 @@ func generate_wall_obstacles() -> void:
 		current_generation_pos -= random_wall_obstacle_y
 		wall_obstacle.global_position = Vector2(x_spawn, current_generation_pos)
 		wall_obstacle.scale = Vector2(x_scale, wall_obstacle.scale.y)
+		elements_spawned.push_back(wall_obstacle)
 
 func generate_obstacles() -> void:
 	var current_generation_pos = next_y_spawn_pos
@@ -50,7 +54,8 @@ func generate_obstacles() -> void:
 		add_child(obstacle)
 		current_generation_pos -= y_spawn
 		obstacle.global_position = Vector2(x_spawn, current_generation_pos)
-		
+		elements_spawned.push_back(obstacle)
+
 func generate_bonuses() -> void:
 	var current_generation_pos = next_y_spawn_pos
 	while current_generation_pos > next_y_spawn_pos - advance_generation:
@@ -62,3 +67,11 @@ func generate_bonuses() -> void:
 		add_child(bonus)
 		current_generation_pos -= y_spawn
 		bonus.global_position = Vector2(x_spawn, current_generation_pos)
+		elements_spawned.push_back(bonus)
+
+func restart() -> void:
+	next_y_spawn_pos = 0.0
+	while elements_spawned.size() > 0:
+		if elements_spawned[0]:
+			elements_spawned[0].queue_free()
+		elements_spawned.remove_at(0)

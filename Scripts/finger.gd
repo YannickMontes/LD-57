@@ -1,3 +1,5 @@
+class_name Finger
+
 extends Area2D
 
 @export var speed_inside_screen: float = 5.0 
@@ -42,7 +44,7 @@ func _process(delta: float) -> void:
 	last_distance_bot_cam = clamp(abs(cam_bot_pos - global_position.y),0 , max_bot_cam_distance)
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):		
+	if body.is_in_group("player"):
 		GameManager.game_over()
 		#GameManager.restart()
 		
@@ -64,3 +66,6 @@ func get_bottom_camera_world_pos() -> float:
 	var half_viewport_height = (get_viewport().get_visible_rect().size.y / zoom.y) / 2
 	var y_cam_center = camera.get_screen_center_position().y
 	return y_cam_center + half_viewport_height
+	
+func restart() -> void:
+	global_position = Vector2(0.0, 2000.0)

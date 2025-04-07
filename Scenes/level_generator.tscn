@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bntokih1kowfe" path="res://Scenes/obstacle.tscn" id="3_kp8js"]
 [ext_resource type="PackedScene" uid="uid://b2r8tbu10uibm" path="res://Scenes/hair3.tscn" id="4_hxbet"]
 
-[node name="LevelGenerator" type="Node2D"]
+[node name="LevelGenerator" type="Node2D" groups=["level_generator"]]
 script = ExtResource("1_xgtxp")
 bonus_node = ExtResource("2_hxbet")
 obstacle_node = ExtResource("3_kp8js")

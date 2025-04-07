@@ -3,7 +3,12 @@ extends Node
 var left_wall: Node2D
 var right_wall: Node2D
 var player: Player
+var finger: Finger
 var gameover_menu: Control
+var music_emmiter: FmodEventEmitter2D
+var camera: Camera2D
+var level_generator: LevelGenerator
+var background_generator: BackgroundGenerator
 
 var is_game_running: bool = true
 var min_fuel = 0.0
@@ -36,13 +41,25 @@ func _process(delta: float) -> void:
 	retrieve_walls()
 	retrieve_player()
 	retrieve_game_over_menu()
+	retrieve_music_emmiter()
+	retrieve_finger()
+	retrieve_camera()
+	retrieve_level_generator()
+	retrieve_background_generator()
+	
+	if not is_game_running:
+		return
 	
 	if last_hit_timer >= combo_timer_secs:
 		current_combo = combo_timer_value
+		if music_emmiter:
+			music_emmiter.set_parameter("mode", "metal")
 	else:
+		if music_emmiter:
+			music_emmiter.set_parameter("mode", "classic")
 		current_combo = 1
 	current_score += (score_by_sec * delta) * current_combo
-	if player && abs(player.global_position.y) > highest_distance_player:
+	if player && player.global_position.y < 0.0 && abs(player.global_position.y) > highest_distance_player:
 		highest_distance_player = abs(player.global_position.y)
 	last_hit_timer += delta
 	pass
@@ -66,10 +83,39 @@ func retrieve_game_over_menu():
 	var gameover_menu_node = get_tree().get_nodes_in_group("gameover")
 	if gameover_menu_node.size() > 0:
 		gameover_menu = gameover_menu_node[0]
-			
+		
+func retrieve_music_emmiter():
+	var music_emmiter_node = get_tree().get_nodes_in_group("music")
+	if music_emmiter_node.size() > 0:
+		music_emmiter = music_emmiter_node[0]
+		
+func retrieve_finger():
+	var finger_node = get_tree().get_nodes_in_group("finger")
+	if finger_node.size() > 0:
+		finger = finger_node[0]
+
+func retrieve_camera():
+	var camera_node = get_tree().get_nodes_in_group("camera")
+	if camera_node.size() > 0:
+		camera = camera_node[0]
+		
+func retrieve_level_generator():
+	var level_generator_node = get_tree().get_nodes_in_group("level_generator")
+	if level_generator_node.size() > 0:
+		level_generator = level_generator_node[0]
+		
+func retrieve_background_generator():
+	var background_generator_node = get_tree().get_nodes_in_group("background_generator")
+	if background_generator_node.size() > 0:
+		background_generator = background_generator_node[0]
+
 func game_over() -> void:
 	gameover_menu.visible = true
-	is_game_running = false	
+	is_game_running = false
+	if current_combo > 1:
+		music_emmiter.set_parameter("mode", "metal_slow")
+	else:
+		music_emmiter.set_parameter("mode", "classic_slow")
 	
 func restart() -> void:
 	current_fuel = max_fuel / 2.0
@@ -77,7 +123,18 @@ func restart() -> void:
 	highest_distance_player = 0
 	current_combo = 1
 	last_hit_timer = 0.0
-	get_tree().reload_current_scene()
+	#get_tree().reload_current_scene()
 	retrieve_walls()
-	gameover_menu.visible = false
+	if gameover_menu:
+		gameover_menu.visible = false
 	is_game_running = true
+	if player:
+		player.restart()
+	if finger:
+		finger.restart()
+	if camera:
+		camera.restart()
+	if level_generator:
+		level_generator.restart()
+	if background_generator:
+		background_generator.restart()

@@ -55,6 +55,7 @@ enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
 [global_group]
 
 player=""
+finger=""
 
 [input]
 

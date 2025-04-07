@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://coqnwqpgtv3l" path="res://Assets/Sprites/bg.png" id="2_pnxgw"]
 [ext_resource type="PackedScene" uid="uid://nwq7mtsu5fkx" path="res://Scenes/bg/bgvar1.tscn" id="3_546xa"]
 
-[node name="BackgroundGenerator" type="Node2D"]
+[node name="BackgroundGenerator" type="Node2D" groups=["background_generator"]]
 script = ExtResource("1_vfmtd")
 texture_bg = ExtResource("2_pnxgw")
 possibles_hairs = Array[PackedScene]([ExtResource("3_546xa")])

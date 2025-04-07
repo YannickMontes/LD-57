@@ -22,3 +22,4 @@ func on_exit_pressed() -> void:
 
 func _on_timer_timeout() -> void:
 	get_tree().change_scene_to_packed(start_level)
+	GameManager.restart()

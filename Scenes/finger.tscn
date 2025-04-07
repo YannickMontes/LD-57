@@ -61,7 +61,7 @@ _data = {
 &"RESET": SubResource("Animation_fewg3")
 }
 
-[node name="Finger" type="Area2D"]
+[node name="Finger" type="Area2D" groups=["finger"]]
 collision_mask = 64
 script = ExtResource("1_fewg3")
 speed_inside_screen = 280.0
@@ -87,5 +87,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_xb0o6")
 }
 autoplay = "Idle"
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/FX/Finger"
+event_guid = "{335ec012-f2fc-4d43-8635-bde7e8223318}"
+autoplay = true
+volume = 1.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

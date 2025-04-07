@@ -37,3 +37,9 @@ func _process(delta: float) -> void:
 				should_move_up = false
 	else:
 		should_move_up = false
+		
+func restart() -> void:
+	global_position = Vector2.ZERO
+	should_move_up = false;
+	is_moving = false
+	elapsed_time = 0.0

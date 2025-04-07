@@ -1,3 +1,5 @@
+class_name BackgroundGenerator
+
 extends Node2D
 
 @export var texture_bg: CompressedTexture2D
@@ -44,3 +46,12 @@ func _process(delta: float) -> void:
 			hairs[index].queue_free()
 			hairs.remove_at(index + 1)
 			hairs.remove_at(index)
+			
+func restart() -> void:
+	while sprites.size() > 0:
+		sprites[0].queue_free()
+		sprites.remove_at(0)
+	while hairs.size() > 0:
+		hairs[0].queue_free()
+		hairs.remove_at(0)
+	next_spawn_pos = 0.0
