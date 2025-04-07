@@ -34,6 +34,7 @@ extends CharacterBody2D
 @onready var raycast_right: RayCast2D = $RaycastRight
 
 @onready var player_anim_fsm: PlayerAnimFSM = $PlayerSprite
+@onready var hit_sprite_component:AnimatedSprite2D = $PlayerSprite/ColSprite
 
 var time_since_stretch = 0.0
 
@@ -105,6 +106,7 @@ func on_obstacle_collide(obstacle: Obstacle):
 		is_affected_by_gravity = true
 		GameManager.last_hit_timer = 0.0
 		(get_viewport().get_camera_2d() as BogeyCamera).start_big_shake()
+		hit_sprite_component.play("hit")
 		play_impact_sfx()
 		
 func on_obstacle_end_collide(obstacle: Obstacle) -> void:

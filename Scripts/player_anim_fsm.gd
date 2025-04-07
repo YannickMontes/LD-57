@@ -3,7 +3,7 @@ class_name PlayerAnimFSM
 extends AnimatedSprite2D
 
 @onready var sprite_component:AnimatedSprite2D = $"."
-@onready var hit_sprite_component:AnimatedSprite2D = $ColSprite
+
 
 enum {IDLE, LOAD, lOAD_LOOP, LAUNCH}
 var state = IDLE
