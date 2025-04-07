@@ -28,7 +28,6 @@ var current_outside_screen_speed: float:
 	get:
 		return lerp(min_speed_outside_screen, max_speed_outside_screen, elapsed_total_time / max_time_full_speed)
 
-
 func _process(delta: float) -> void:
 	if not GameManager.is_game_running:
 		return
