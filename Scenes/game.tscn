@@ -12,7 +12,7 @@
 [ext_resource type="FontFile" uid="uid://d057jv83pjbij" path="res://Assets/Font/melted_monster/Melted Monster.ttf" id="10_ldgsr"]
 [ext_resource type="Script" uid="uid://dse8ugmrbng41" path="res://Scripts/combo_value.gd" id="11_o5yvi"]
 [ext_resource type="Script" uid="uid://crfrridk8dg2x" path="res://Scripts/score_value.gd" id="11_rku1e"]
-[ext_resource type="Script" path="res://Scripts/game_over.gd" id="13_rfjv2"]
+[ext_resource type="Script" uid="uid://dbm2jk1hwh7r8" path="res://Scripts/game_over.gd" id="13_rfjv2"]
 
 [sub_resource type="TileSet" id="TileSet_ebmjs"]
 tile_size = Vector2i(64, 64)

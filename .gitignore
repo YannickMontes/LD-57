@@ -5,3 +5,5 @@
 # Fmod hidden files
 .cache
 .user
+.apk
+.idsig
