@@ -53,6 +53,85 @@ time_to_start_follow = 0.1
 ease_speed = 5.0
 min_speed_to_move = 1.0
 
+[node name="GameOver" type="Control" parent="Camera2D" groups=["gameover"]]
+visible = false
+z_index = 25
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("13_rfjv2")
+
+[node name="bg game over" type="TextureRect" parent="Camera2D/GameOver"]
+modulate = Color(0.71, 0.71, 0.71, 0.639216)
+material = SubResource("CanvasItemMaterial_rku1e")
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -712.0
+offset_top = -1068.0
+offset_right = 553.0
+offset_bottom = 903.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_1l0tm")
+
+[node name="GAME OVER TEXTE" type="Label" parent="Camera2D/GameOver"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -374.0
+offset_top = -732.0
+offset_right = 338.0
+offset_bottom = -229.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
+theme_override_constants/shadow_outline_size = 30
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 200
+text = "GAME
+OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="texte" type="VSplitContainer" parent="Camera2D/GameOver"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -109.5
+offset_right = 109.5
+offset_bottom = 164.0
+grow_horizontal = 2
+
+[node name="RetryButton" type="MenuButton" parent="Camera2D/GameOver/texte"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.337255, 0, 1)
+theme_override_colors/font_color = Color(0.767889, 0.624891, 0, 1)
+theme_override_constants/outline_size = 90
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 130
+text = "Retry"
+
+[node name="ExitButton" type="MenuButton" parent="Camera2D/GameOver/texte"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0.980392, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.337255, 0, 1)
+theme_override_colors/font_color = Color(0.767889, 0.624891, 0, 1)
+theme_override_constants/outline_size = 90
+theme_override_fonts/font = ExtResource("10_ldgsr")
+theme_override_font_sizes/font_size = 130
+text = "quit"
+
 [node name="BlackBar" type="Sprite2D" parent="Camera2D"]
 position = Vector2(-494, 1978)
 scale = Vector2(-4, -4)
@@ -151,81 +230,3 @@ fmod_parameters/mode/variant_type = 4
 fmod_parameters/pause/id = -4552771270613424376
 fmod_parameters/pause = 0.0
 fmod_parameters/pause/variant_type = 2
-
-[node name="GameOver" type="Control" parent="." groups=["gameover"]]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("13_rfjv2")
-
-[node name="bg game over" type="TextureRect" parent="GameOver"]
-modulate = Color(0.71, 0.71, 0.71, 0.639216)
-material = SubResource("CanvasItemMaterial_rku1e")
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -712.0
-offset_top = -1068.0
-offset_right = 553.0
-offset_bottom = 903.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("6_1l0tm")
-
-[node name="GAME OVER TEXTE" type="Label" parent="GameOver"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -374.0
-offset_top = -732.0
-offset_right = 338.0
-offset_bottom = -229.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
-theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
-theme_override_constants/shadow_outline_size = 30
-theme_override_fonts/font = ExtResource("10_ldgsr")
-theme_override_font_sizes/font_size = 200
-text = "GAME
-OVER"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="texte" type="VSplitContainer" parent="GameOver"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -109.5
-offset_right = 109.5
-offset_bottom = 164.0
-grow_horizontal = 2
-
-[node name="RetryButton" type="MenuButton" parent="GameOver/texte"]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0.980392, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0.337255, 0, 1)
-theme_override_colors/font_color = Color(0.767889, 0.624891, 0, 1)
-theme_override_constants/outline_size = 90
-theme_override_fonts/font = ExtResource("10_ldgsr")
-theme_override_font_sizes/font_size = 130
-text = "Retry"
-
-[node name="ExitButton" type="MenuButton" parent="GameOver/texte"]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0.980392, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0.337255, 0, 1)
-theme_override_colors/font_color = Color(0.767889, 0.624891, 0, 1)
-theme_override_constants/outline_size = 90
-theme_override_fonts/font = ExtResource("10_ldgsr")
-theme_override_font_sizes/font_size = 130
-text = "quit"
