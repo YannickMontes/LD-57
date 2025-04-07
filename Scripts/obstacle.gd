@@ -8,9 +8,15 @@ enum Behavior { STOP, SLOW }
 @export var disappear_on_collide: bool
 @export var behavior: Behavior
 @export var slow_percentage: float
+@export var random_rotation: bool = false
+
 var is_positive: bool:
 	get:
 		return fuel_change > 0
+		
+func _ready() -> void:
+	if random_rotation:
+		global_rotation_degrees = randf_range(0, 360.0)
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:

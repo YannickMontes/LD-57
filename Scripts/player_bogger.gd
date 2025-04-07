@@ -37,6 +37,7 @@ var begin_hold_position = Vector2.ZERO
 var current_launch_direction = Vector2.ZERO
 var is_currently_on_wall = false
 var is_affected_by_gravity = false
+var just_restarted = false
 
 var max_fuel_charge_time: float:
 	get:
@@ -48,6 +49,12 @@ var fuel_current_charge_time:float:
 
 func _ready() -> void:
 	pass
+	
+func _process(delta:float) -> void:
+	if just_restarted:
+		just_restarted = false
+		return
+	handle_inputs(delta)
 	
 func _physics_process(delta: float) -> void:
 	if not GameManager.is_game_running:
@@ -63,7 +70,6 @@ func _physics_process(delta: float) -> void:
 		play_slide_sfx(true)
 	
 	handle_gravity(delta)
-	handle_inputs(delta)
 	
 	if is_holding_click:
 		launch_feedback_node.visible = current_launch_direction != Vector2.ZERO
@@ -93,6 +99,7 @@ func on_obstacle_collide(obstacle: Obstacle):
 		 , time_reduce_time_scale_on_obstacle_hit)
 		is_affected_by_gravity = true
 		GameManager.last_hit_timer = 0.0
+		(get_viewport().get_camera_2d() as BogeyCamera).start_big_shake()
 		play_impact_sfx()
 		
 func on_obstacle_end_collide(obstacle: Obstacle) -> void:
@@ -109,15 +116,20 @@ func handle_gravity(delta: float):
 			velocity.y = max_velocity_on_stick_wall
 			
 func handle_inputs(delta: float):
+	if !GameManager.is_game_running:
+		return
+		
 	if Input.is_action_just_pressed("click"):
 		is_holding_click = true
 		begin_hold_position = get_viewport().get_mouse_position()
 		time_since_stretch = 0.0
 		player_anim_fsm.change_state(player_anim_fsm.LOAD)
 		play_stretch_sfx(true)
+		#(get_viewport().get_camera_2d() as BogeyCamera).start_stretch_shake()
 
 	if Input.is_action_just_released("click") && is_holding_click:
 		launch_bogger()
+		#(get_viewport().get_camera_2d() as BogeyCamera).stop_stretch_shake()
 		
 	if is_holding_click:
 		var currentMousePos = get_viewport().get_mouse_position()
@@ -129,6 +141,8 @@ func handle_inputs(delta: float):
 		time_since_stretch += delta
 
 func launch_bogger():
+	if !GameManager.is_game_running:
+		return
 	is_holding_click = false
 	var force = lerp(min_stretch_force, max_stretch_force, stretch_curve_force.sample(fuel_current_charge_time))
 	velocity = current_launch_direction.normalized() * force
@@ -163,3 +177,5 @@ func restart() -> void:
 	is_affected_by_gravity = false
 	is_currently_on_wall = false
 	is_holding_click = false
+	just_restarted = true
+	velocity = Vector2.ZERO

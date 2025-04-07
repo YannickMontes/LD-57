@@ -24,7 +24,6 @@ tile_size = Vector2i(64, 64)
 [node name="Game" type="Node2D"]
 
 [node name="PlayerBogger" parent="." instance=ExtResource("1_ebmjs")]
-position = Vector2(345, 151)
 launch_force = 2000.0
 fuel_consumption_by_seconds = 35.0
 
@@ -51,10 +50,12 @@ shape = SubResource("WorldBoundaryShape2D_ebmjs")
 zoom = Vector2(0.7, 0.7)
 position_smoothing_speed = 50.0
 script = ExtResource("5_wowpa")
+big_shake_strength = 15.0
+big_shake_fade = 0.07
+max_shake_stretch = 6.0
 player_path = NodePath("../PlayerBogger")
 time_to_start_follow = 0.1
 ease_speed = 5.0
-min_speed_to_move = 1.0
 
 [node name="GameOver" type="Control" parent="Camera2D" groups=["gameover"]]
 visible = false

@@ -64,8 +64,8 @@ _data = {
 [node name="Finger" type="Area2D" groups=["finger"]]
 collision_mask = 64
 script = ExtResource("1_fewg3")
-speed_inside_screen = 280.0
-max_speed_inside_screen = 600.0
+min_speed_inside_screen = 300.0
+min_speed_outside_screen = 500.0
 distance_curve_out_screen = SubResource("Curve_fewg3")
 max_down_distance = 100.0
 max_bot_cam_distance = 750.0
@@ -74,13 +74,13 @@ max_bot_cam_distance = 750.0
 sprite_frames = SubResource("SpriteFrames_fewg3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-25, 64, -26, -45, -2, -63, 22, -45, 23, 64)
+polygon = PackedVector2Array(-25, 64, -43, 63, -43, 52, -25.11, 52.116, -26, -44, -20, -54, 0, -62, 18, -56, 26, -48, 29, 53, 47, 53, 48, 64, 26, 64)
 
 [node name="MaxSpeedThreshold" type="Node2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(0, -25)
 
 [node name="OutOfScreenThreshold" type="Node2D" parent="."]
-position = Vector2(0, -43)
+position = Vector2(0, -48)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
