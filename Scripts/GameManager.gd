@@ -127,7 +127,6 @@ func restart() -> void:
 	retrieve_walls()
 	if gameover_menu:
 		gameover_menu.visible = false
-	is_game_running = true
 	if player:
 		player.restart()
 	if finger:
@@ -138,3 +137,5 @@ func restart() -> void:
 		level_generator.restart()
 	if background_generator:
 		background_generator.restart()
+	
+	is_game_running = true

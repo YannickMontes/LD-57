@@ -34,6 +34,7 @@ var begin_hold_position = Vector2.ZERO
 var current_launch_direction = Vector2.ZERO
 var is_currently_on_wall = false
 var is_affected_by_gravity = false
+var just_restarted = false
 
 var max_fuel_charge_time: float:
 	get:
@@ -45,6 +46,12 @@ var fuel_current_charge_time:float:
 
 func _ready() -> void:
 	pass
+	
+func _process(delta:float) -> void:
+	if just_restarted:
+		just_restarted = false
+		return
+	handle_inputs(delta)
 	
 func _physics_process(delta: float) -> void:
 	if not GameManager.is_game_running:
@@ -60,7 +67,6 @@ func _physics_process(delta: float) -> void:
 		play_slide_sfx(true)
 	
 	handle_gravity(delta)
-	handle_inputs(delta)
 	
 	if is_holding_click:
 		launch_feedback_node.visible = current_launch_direction != Vector2.ZERO
@@ -106,6 +112,9 @@ func handle_gravity(delta: float):
 			velocity.y = max_velocity_on_stick_wall
 			
 func handle_inputs(delta: float):
+	if !GameManager.is_game_running:
+		return
+		
 	if Input.is_action_just_pressed("click"):
 		is_holding_click = true
 		begin_hold_position = get_viewport().get_mouse_position()
@@ -124,6 +133,8 @@ func handle_inputs(delta: float):
 		time_since_stretch += delta
 
 func launch_bogger():
+	if !GameManager.is_game_running:
+		return
 	is_holding_click = false
 	var force = lerp(min_stretch_force, max_stretch_force, stretch_curve_force.sample(fuel_current_charge_time))
 	velocity = current_launch_direction.normalized() * force
@@ -157,3 +168,5 @@ func restart() -> void:
 	is_affected_by_gravity = false
 	is_currently_on_wall = false
 	is_holding_click = false
+	just_restarted = true
+	velocity = Vector2.ZERO

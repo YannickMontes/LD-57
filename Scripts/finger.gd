@@ -1,9 +1,15 @@
 class_name Finger
 
 extends Area2D
+	
+@export var min_speed_inside_screen: float = 400.0
+@export var max_speed_inside_screen: float = 700.0 
 
-@export var speed_inside_screen: float = 5.0 
-@export var max_speed_inside_screen: float = 5.0 
+@export var min_speed_outside_screen: float = 600.0
+@export var max_speed_outside_screen: float = 1100.0
+
+@export var max_time_full_speed = 60.0
+
 @export var distance_curve_out_screen: Curve
 @export var max_down_distance: float = 20.0
 @export var max_bot_cam_distance: float = 600.0
@@ -12,6 +18,16 @@ extends Area2D
 
 var elapsed_time_out_screen = 0.0
 var last_distance_bot_cam = 0.0
+var elapsed_total_time = 0.0
+
+var current_inside_screen_speed: float:
+	get:
+		return lerp(min_speed_inside_screen, max_speed_inside_screen, elapsed_total_time / max_time_full_speed)
+
+var current_outside_screen_speed: float:
+	get:
+		return lerp(min_speed_outside_screen, max_speed_outside_screen, elapsed_total_time / max_time_full_speed)
+
 
 func _process(delta: float) -> void:
 	if not GameManager.is_game_running:
@@ -34,15 +50,18 @@ func _process(delta: float) -> void:
 		elapsed_time_out_screen = 0.0
 
 	#if not camera.is_moving:
-	var speed = speed_inside_screen
+	var speed = current_inside_screen_speed
 	if not is_node_on_screen(threshold_max_speed):
-		speed = max_speed_inside_screen
+		speed = current_outside_screen_speed
+	print(speed)
 	var speed_on_frame = -1.0 * (speed * delta)
 	global_position = Vector2(global_position.x, global_position.y + speed_on_frame)
 	
 	var cam_bot_pos = get_bottom_camera_world_pos()
 	last_distance_bot_cam = clamp(abs(cam_bot_pos - global_position.y),0 , max_bot_cam_distance)
 
+	elapsed_total_time += delta
+	
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		GameManager.game_over()
@@ -69,3 +88,5 @@ func get_bottom_camera_world_pos() -> float:
 	
 func restart() -> void:
 	global_position = Vector2(0.0, 2000.0)
+	elapsed_time_out_screen = 0.0
+	elapsed_total_time = 0.0
