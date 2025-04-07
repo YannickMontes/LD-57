@@ -96,6 +96,7 @@ func on_obstacle_collide(obstacle: Obstacle):
 		 , time_reduce_time_scale_on_obstacle_hit)
 		is_affected_by_gravity = true
 		GameManager.last_hit_timer = 0.0
+		(get_viewport().get_camera_2d() as BogeyCamera).start_big_shake()
 		play_impact_sfx()
 		
 func on_obstacle_end_collide(obstacle: Obstacle) -> void:
@@ -120,9 +121,11 @@ func handle_inputs(delta: float):
 		begin_hold_position = get_viewport().get_mouse_position()
 		time_since_stretch = 0.0
 		play_stretch_sfx(true)
+		#(get_viewport().get_camera_2d() as BogeyCamera).start_stretch_shake()
 
 	if Input.is_action_just_released("click") && is_holding_click:
 		launch_bogger()
+		#(get_viewport().get_camera_2d() as BogeyCamera).stop_stretch_shake()
 		
 	if is_holding_click:
 		var currentMousePos = get_viewport().get_mouse_position()
