@@ -15,5 +15,4 @@ possible_wall_obstacles = Array[PackedScene]([ExtResource("2_5lsef"), ExtResourc
 bonus_spawn_interval = Vector2(500, 1000)
 obstacle_spawn_interval = Vector2(500, 1000)
 wall_obstacles_interval = Vector2(300, 800)
-elements_range_x_percentage = 0.6
 advance_generation = 5000.0
