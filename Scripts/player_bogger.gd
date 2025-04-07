@@ -28,6 +28,7 @@ extends CharacterBody2D
 
 @onready var sprite_arrow: Node2D = $LaunchFeedbackDir/SpriteArrow
 @onready var sprite_booger: Node2D = $PlayerSprite
+@onready var sprite_splash: Node2D = $PlayerSprite/SplashSprite
 @onready var raycast_left: RayCast2D = $RaycastLeft
 @onready var raycast_right: RayCast2D = $RaycastRight
 
@@ -127,6 +128,7 @@ func handle_inputs(delta: float):
 		begin_hold_position = get_viewport().get_mouse_position()
 		time_since_stretch = 0.0
 		player_anim_fsm.change_state(player_anim_fsm.LOAD)
+		sprite_splash.visible = true
 		play_stretch_sfx(true)
 		#(get_viewport().get_camera_2d() as BogeyCamera).start_stretch_shake()
 
@@ -153,6 +155,7 @@ func launch_bogger():
 	is_affected_by_gravity = true
 	time_since_stretch = 0.0
 	player_anim_fsm.change_state(player_anim_fsm.LAUNCH)
+	sprite_splash.visible = false
 	play_stretch_sfx(false)
 	$LaunchEventEmmiter.play()
 	play_slide_sfx(false)
