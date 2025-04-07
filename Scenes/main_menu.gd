@@ -1,4 +1,4 @@
-class_name MainMenu
+class_name GameOverMenu
 extends Control
 
 @onready var start_button: MenuButton = $"VBoxContainer/Start Button" as Button

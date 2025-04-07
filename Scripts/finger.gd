@@ -42,8 +42,9 @@ func _process(delta: float) -> void:
 	last_distance_bot_cam = clamp(abs(cam_bot_pos - global_position.y),0 , max_bot_cam_distance)
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
-		GameManager.restart()
+	if body.is_in_group("player"):		
+		GameManager.game_over()
+		#GameManager.restart()
 		
 func is_node_on_screen(node: Node2D) -> bool:
 	var camera = get_viewport().get_camera_2d()

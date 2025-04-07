@@ -3,6 +3,7 @@ extends Node
 var left_wall: Node2D
 var right_wall: Node2D
 var player: Player
+var gameover_menu: Control
 
 var is_game_running: bool = true
 var min_fuel = 0.0
@@ -34,6 +35,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	retrieve_walls()
 	retrieve_player()
+	retrieve_game_over_menu()
 	
 	if last_hit_timer >= combo_timer_secs:
 		current_combo = combo_timer_value
@@ -60,8 +62,14 @@ func retrieve_player():
 		if player_node.size() > 0:
 			player = player_node[0]
 			
+func retrieve_game_over_menu():
+	var gameover_menu_node = get_tree().get_nodes_in_group("gameover")
+	if gameover_menu_node.size() > 0:
+		gameover_menu = gameover_menu_node[0]
+			
 func game_over() -> void:
-	is_game_running = false
+	gameover_menu.visible = true
+	is_game_running = false	
 	
 func restart() -> void:
 	current_fuel = max_fuel / 2.0
@@ -71,3 +79,5 @@ func restart() -> void:
 	last_hit_timer = 0.0
 	get_tree().reload_current_scene()
 	retrieve_walls()
+	gameover_menu.visible = false
+	is_game_running = true
