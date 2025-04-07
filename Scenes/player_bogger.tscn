@@ -220,8 +220,13 @@ animations = [{
 "texture": SubResource("AtlasTexture_vj17t")
 }],
 "loop": false,
-"name": &"default",
+"name": &"hit",
 "speed": 1.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"no_hit",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0te08"]
@@ -276,8 +281,7 @@ frame_progress = 0.862291
 
 [node name="ColSprite" type="AnimatedSprite2D" parent="PlayerSprite"]
 sprite_frames = SubResource("SpriteFrames_1n4y5")
-frame = 2
-frame_progress = 1.0
+animation = &"no_hit"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.78)
