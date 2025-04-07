@@ -10,10 +10,13 @@ radius = 32.0
 scale = Vector2(1.6, 1.6)
 collision_mask = 64
 script = ExtResource("1_15o2q")
+affect_combo = true
 fuel_change = -20
 disappear_on_collide = true
 slow_percentage = 0.9
 random_rotation = true
+rotate_auto = true
+rotate_speed = 25.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)

@@ -10,6 +10,8 @@ var camera: Camera2D
 var level_generator: LevelGenerator
 var background_generator: BackgroundGenerator
 
+var metal_combo_threshold = 5.0
+
 var is_game_running: bool = true
 var min_fuel = 0.0
 var max_fuel = 100.0
@@ -50,14 +52,22 @@ func _process(delta: float) -> void:
 	if not is_game_running:
 		return
 	
-	if last_hit_timer >= combo_timer_secs:
-		current_combo = combo_timer_value
+	#if last_hit_timer >= combo_timer_secs:
+		#current_combo = combo_timer_value
+		#if music_emmiter:
+			#music_emmiter.set_parameter("mode", "metal")
+	#else:
+		#if music_emmiter:
+			#music_emmiter.set_parameter("mode", "classic")
+		#current_combo = 1
+	
+	if current_combo >= metal_combo_threshold:
 		if music_emmiter:
 			music_emmiter.set_parameter("mode", "metal")
 	else:
 		if music_emmiter:
 			music_emmiter.set_parameter("mode", "classic")
-		current_combo = 1
+			
 	current_score += (score_by_sec * delta) * current_combo
 	if player && player.global_position.y < 0.0 && abs(player.global_position.y) > highest_distance_player:
 		highest_distance_player = abs(player.global_position.y)

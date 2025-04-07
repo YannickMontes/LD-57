@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bvqb5htsjjrm3" path="res://Assets/Sprites/etire1.png" id="4_jn3km"]
 [ext_resource type="Texture2D" uid="uid://cwday502kosd" path="res://Assets/Sprites/etire2.png" id="5_ellvm"]
 [ext_resource type="Texture2D" uid="uid://bcoe3rnb42vnh" path="res://Assets/Sprites/load.png" id="6_1mqqq"]
-[ext_resource type="Script" uid="uid://b8ju0oeoisecw" path="res://Scripts/player_anim_fsm.gd" id="7_jn3km"]
+[ext_resource type="Script" path="res://Scripts/player_anim_fsm.gd" id="7_jn3km"]
 
 [sub_resource type="Curve" id="Curve_nxmd7"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]

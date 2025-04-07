@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cc6hvkl72ckel"]
+[gd_scene load_steps=24 format=3 uid="uid://cc6hvkl72ckel"]
 
 [ext_resource type="PackedScene" uid="uid://nwq7mtsu5fkx" path="res://Scenes/bg/bgvar1.tscn" id="1_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://bwr5nusocejj0" path="res://Scenes/player_bogger.tscn" id="1_ebmjs"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ciq1q2f0v5mym" path="res://Scenes/bg/bgvar2.tscn" id="6_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://ckffxca03cye0" path="res://Scenes/background_generator.tscn" id="7_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://b6w747wv00p3f" path="res://Scenes/bg/bgvar3.tscn" id="7_ldgsr"]
+[ext_resource type="Script" uid="uid://bnl83t784oefl" path="res://Scripts/endurance_bar.gd" id="8_1phco"]
 [ext_resource type="PackedScene" uid="uid://dvd2pjqw0a61u" path="res://Scenes/level_generator.tscn" id="8_v158k"]
 [ext_resource type="FontFile" uid="uid://d057jv83pjbij" path="res://Assets/Font/melted_monster/Melted Monster.ttf" id="10_ldgsr"]
 [ext_resource type="Script" uid="uid://dse8ugmrbng41" path="res://Scripts/combo_value.gd" id="11_o5yvi"]
@@ -20,6 +21,95 @@ tile_size = Vector2i(64, 64)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ebmjs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rku1e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfjv2"]
+bg_color = Color(0.843137, 0.843137, 0.843137, 0.380392)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1phco"]
+bg_color = Color(0, 0.980392, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Animation" id="Animation_1phco"]
+resource_name = "add"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_nb51f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(623, 20)]
+}
+
+[sub_resource type="Animation" id="Animation_nnt18"]
+resource_name = "hit"
+length = 0.35
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(623, 20), Vector2(637, 13), Vector2(615, 13), Vector2(626, 26), Vector2(615, 43), Vector2(637, 13), Vector2(616, 21), Vector2(623, 20)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nnt18"]
+_data = {
+&"RESET": SubResource("Animation_nb51f"),
+&"add": SubResource("Animation_1phco"),
+&"hit": SubResource("Animation_nnt18")
+}
 
 [node name="Game" type="Node2D"]
 
@@ -156,8 +246,8 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = -481.0
 offset_top = -909.0
-offset_right = -441.0
-offset_bottom = -869.0
+offset_right = -481.0
+offset_bottom = -909.0
 
 [node name="title" type="VSplitContainer" parent="Camera2D/ATH"]
 layout_mode = 0
@@ -207,6 +297,30 @@ theme_override_fonts/font = ExtResource("10_ldgsr")
 theme_override_font_sizes/font_size = 60
 text = "1"
 script = ExtResource("11_o5yvi")
+
+[node name="EnduranceBar" type="ProgressBar" parent="Camera2D/ATH"]
+z_index = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 623.0
+offset_top = 20.0
+offset_right = 923.0
+offset_bottom = 65.0
+grow_horizontal = 0
+pivot_offset = Vector2(150, 22)
+theme_override_styles/background = SubResource("StyleBoxFlat_rfjv2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1phco")
+value = 80.0
+show_percentage = false
+script = ExtResource("8_1phco")
+shake = 10.0
+
+[node name="AnimBar" type="AnimationPlayer" parent="Camera2D/ATH/EnduranceBar"]
+libraries = {
+&"": SubResource("AnimationLibrary_nnt18")
+}
 
 [node name="BackgroundGenerator" parent="." instance=ExtResource("7_1l0tm")]
 possibles_hairs = Array[PackedScene]([ExtResource("1_1l0tm"), ExtResource("6_h4fw4"), ExtResource("7_ldgsr")])

@@ -52,7 +52,6 @@ func _process(delta: float) -> void:
 	var speed = current_inside_screen_speed
 	if not is_node_on_screen(threshold_max_speed):
 		speed = current_outside_screen_speed
-	print(speed)
 	var speed_on_frame = -1.0 * (speed * delta)
 	global_position = Vector2(global_position.x, global_position.y + speed_on_frame)
 	
