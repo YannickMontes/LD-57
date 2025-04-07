@@ -6,7 +6,8 @@ extends Node2D
 @export var bonus_spawn_interval: Vector2
 @export var obstacle_spawn_interval: Vector2
 @export var wall_obstacles_interval: Vector2
-@export var elements_range_x_percentage: float
+@export var obstacles_range_x_percentage: float
+@export var bonus_range_x_percentage: float
 @export var advance_generation: float
 
 var next_y_spawn_pos: float = 0.0
@@ -42,8 +43,8 @@ func generate_wall_obstacles() -> void:
 func generate_obstacles() -> void:
 	var current_generation_pos = next_y_spawn_pos
 	while current_generation_pos > next_y_spawn_pos - advance_generation:
-		var left_min_x = elements_range_x_percentage * GameManager.left_wall.global_position.x
-		var left_max_x = elements_range_x_percentage * GameManager.right_wall.global_position.x
+		var left_min_x = obstacles_range_x_percentage * GameManager.left_wall.global_position.x
+		var left_max_x = obstacles_range_x_percentage * GameManager.right_wall.global_position.x
 		var y_spawn = randf_range(obstacle_spawn_interval.x, obstacle_spawn_interval.y)
 		var x_spawn = randf_range(left_min_x, left_max_x)
 		var obstacle = obstacle_node.instantiate()
@@ -54,8 +55,8 @@ func generate_obstacles() -> void:
 func generate_bonuses() -> void:
 	var current_generation_pos = next_y_spawn_pos
 	while current_generation_pos > next_y_spawn_pos - advance_generation:
-		var left_min_x = elements_range_x_percentage * GameManager.left_wall.global_position.x
-		var left_max_x = elements_range_x_percentage * GameManager.right_wall.global_position.x
+		var left_min_x = bonus_range_x_percentage * GameManager.left_wall.global_position.x
+		var left_max_x = bonus_range_x_percentage * GameManager.right_wall.global_position.x
 		var y_spawn = randf_range(bonus_spawn_interval.x, bonus_spawn_interval.y)
 		var x_spawn = randf_range(left_min_x, left_max_x)
 		var bonus = bonus_node.instantiate()
