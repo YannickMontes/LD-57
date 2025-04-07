@@ -28,10 +28,11 @@ DSP/dsp_buffer_count=4
 
 [application]
 
-config/name="LD-57"
+config/name="DEEP DEEP DIG DIG"
+config/version="1.0"
 run/main_scene="uid://c6ak6kstxmmf5"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dqj3k6evdlejl"
 
 [autoload]
 
