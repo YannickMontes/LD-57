@@ -74,7 +74,7 @@ max_bot_cam_distance = 750.0
 sprite_frames = SubResource("SpriteFrames_fewg3")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-25, 64, -43, 63, -43, 52, -25.11, 52.116, -26, -44, -20, -54, 0, -62, 18, -56, 26, -48, 29, 53, 47, 53, 48, 64, 26, 64)
+polygon = PackedVector2Array(-25, 64, -43, 63, -43, 52, -33, -5, -26, -44, -20, -54, 0, -60, 18, -56, 26, -48, 32, -5, 47, 53, 48, 64, 26, 64)
 
 [node name="MaxSpeedThreshold" type="Node2D" parent="."]
 position = Vector2(0, -25)

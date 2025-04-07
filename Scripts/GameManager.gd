@@ -24,6 +24,7 @@ var current_combo: int = 1
 var current_score: float = 0.0
 var last_hit_timer: float = 0.0
 var highest_distance_player = 0.0
+var last_pos_player = Vector2.ZERO
 
 var current_fuel: float:
 	set(value):
@@ -68,10 +69,16 @@ func _process(delta: float) -> void:
 		if music_emmiter:
 			music_emmiter.set_parameter("mode", "classic")
 			
-	current_score += (score_by_sec * delta) * current_combo
-	if player && player.global_position.y < 0.0 && abs(player.global_position.y) > highest_distance_player:
-		highest_distance_player = abs(player.global_position.y)
+	if player && player.global_position.y < last_pos_player.y && player.global_position.y < highest_distance_player:
+		var delta_distance = abs(player.global_position.y - last_pos_player.y)
+		var score_to_add = player.get_score(delta_distance)
+		print(score_to_add)
+		current_score += score_to_add
+
 	last_hit_timer += delta
+	if player:
+		last_pos_player = player.global_position
+		highest_distance_player = player.global_position.y
 	pass
 
 func retrieve_walls():

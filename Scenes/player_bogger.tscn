@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bwr5nusocejj0"]
+[gd_scene load_steps=30 format=3 uid="uid://bwr5nusocejj0"]
 
 [ext_resource type="Script" uid="uid://chvs7nvi6tjix" path="res://Scripts/player_bogger.gd" id="1_fqqoy"]
 [ext_resource type="Texture2D" uid="uid://ch0s7ysijj1cc" path="res://Assets/Sprites/boggers54.png" id="2_nxmd7"]
@@ -12,6 +12,12 @@
 [sub_resource type="Curve" id="Curve_nxmd7"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
+
+[sub_resource type="Curve" id="Curve_jn3km"]
+_limits = [0.0, 1.0, 0.0, 200.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(50, 0.1), 0.00550442, 0.00550442, 0, 0, Vector2(100, 1), 0.007, 0.0, 0, 0]
+point_count = 3
+metadata/_snap_count = 72
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eyq1q"]
 atlas = ExtResource("2_nxmd7")
@@ -189,6 +195,8 @@ time_with_no_consumption = 0.1
 min_scale_arrow = 2.0
 max_scale_arrow = 10.0
 velocity_detect_wall_threshold = 1.0
+score_by_delta = SubResource("Curve_jn3km")
+score_multiplier = 100.0
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 z_index = 5
