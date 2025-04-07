@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ciq1q2f0v5mym" path="res://Scenes/bg/bgvar2.tscn" id="6_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://ckffxca03cye0" path="res://Scenes/background_generator.tscn" id="7_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://b6w747wv00p3f" path="res://Scenes/bg/bgvar3.tscn" id="7_ldgsr"]
-[ext_resource type="Script" uid="uid://bnl83t784oefl" path="res://Scripts/endurance_bar.gd" id="8_1phco"]
+[ext_resource type="Script" path="res://Scripts/endurance_bar.gd" id="8_1phco"]
 [ext_resource type="PackedScene" uid="uid://dvd2pjqw0a61u" path="res://Scenes/level_generator.tscn" id="8_v158k"]
 [ext_resource type="FontFile" uid="uid://d057jv83pjbij" path="res://Assets/Font/melted_monster/Melted Monster.ttf" id="10_ldgsr"]
 [ext_resource type="Script" uid="uid://dse8ugmrbng41" path="res://Scripts/combo_value.gd" id="11_o5yvi"]
@@ -45,22 +45,6 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[sub_resource type="Animation" id="Animation_1phco"]
-resource_name = "add"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_nb51f"]
 length = 0.001
 tracks/0/type = "value"
@@ -86,6 +70,22 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(623, 20)]
+}
+
+[sub_resource type="Animation" id="Animation_1phco"]
+resource_name = "add"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.2, 1.2), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_nnt18"]

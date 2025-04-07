@@ -3,8 +3,9 @@ class_name PlayerAnimFSM
 extends AnimatedSprite2D
 
 @onready var sprite_component:AnimatedSprite2D = $"."
+@onready var hit_sprite_component:AnimatedSprite2D = $ColSprite
 
-enum {IDLE, LOAD, lOAD_LOOP, LAUNCH}
+enum {IDLE, LOAD, lOAD_LOOP, LAUNCH, HIT}
 var state = IDLE
 
 # Called when the node enters the scene tree for the first time.
@@ -23,6 +24,8 @@ func change_state(new_state) -> void:
 			sprite_component.play("load_loop")
 		LAUNCH :
 			sprite_component.play("launch")
+		HIT: 
+			
 
 
 func _on_animation_finished() -> void:
