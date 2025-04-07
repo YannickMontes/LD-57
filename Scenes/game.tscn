@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cc6hvkl72ckel"]
+[gd_scene load_steps=27 format=3 uid="uid://cc6hvkl72ckel"]
 
 [ext_resource type="PackedScene" uid="uid://nwq7mtsu5fkx" path="res://Scenes/bg/bgvar1.tscn" id="1_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://bwr5nusocejj0" path="res://Scenes/player_bogger.tscn" id="1_ebmjs"]
@@ -8,12 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://ciq1q2f0v5mym" path="res://Scenes/bg/bgvar2.tscn" id="6_h4fw4"]
 [ext_resource type="PackedScene" uid="uid://ckffxca03cye0" path="res://Scenes/background_generator.tscn" id="7_1l0tm"]
 [ext_resource type="PackedScene" uid="uid://b6w747wv00p3f" path="res://Scenes/bg/bgvar3.tscn" id="7_ldgsr"]
-[ext_resource type="Script" path="res://Scripts/endurance_bar.gd" id="8_1phco"]
+[ext_resource type="Script" uid="uid://buoo7fv2yt3i0" path="res://Scripts/leaderboard.gd" id="7_nb51f"]
+[ext_resource type="Script" uid="uid://bnl83t784oefl" path="res://Scripts/endurance_bar.gd" id="8_1phco"]
+[ext_resource type="Script" uid="uid://32bgk60uw0e" path="res://Scripts/leaderboard_value.gd" id="8_ewbju"]
 [ext_resource type="PackedScene" uid="uid://dvd2pjqw0a61u" path="res://Scenes/level_generator.tscn" id="8_v158k"]
 [ext_resource type="FontFile" uid="uid://d057jv83pjbij" path="res://Assets/Font/melted_monster/Melted Monster.ttf" id="10_ldgsr"]
 [ext_resource type="Script" uid="uid://dse8ugmrbng41" path="res://Scripts/combo_value.gd" id="11_o5yvi"]
 [ext_resource type="Script" uid="uid://crfrridk8dg2x" path="res://Scripts/score_value.gd" id="11_rku1e"]
 [ext_resource type="Script" uid="uid://dbm2jk1hwh7r8" path="res://Scripts/game_over.gd" id="13_rfjv2"]
+[ext_resource type="PackedScene" uid="uid://e83vkqxus6wr" path="res://Scenes/score_fetcher.tscn" id="15_nb51f"]
 
 [sub_resource type="TileSet" id="TileSet_ebmjs"]
 tile_size = Vector2i(64, 64)
@@ -224,19 +227,23 @@ theme_override_colors/font_color = Color(0, 0.980392, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0.337255, 0, 1)
 theme_override_constants/shadow_outline_size = 30
 theme_override_fonts/font = ExtResource("10_ldgsr")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 120
 text = "200000000"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("11_rku1e")
 
-[node name="leaderboard" type="Control" parent="Camera2D/GameOver"]
+[node name="leaderboard" type="Control" parent="Camera2D/GameOver" node_paths=PackedStringArray("top_scores")]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -502.0
 offset_top = 2.0
 offset_right = 494.0
 offset_bottom = 580.0
+script = ExtResource("7_nb51f")
+top_scores = [NodePath("top1_cont/top1_value"), NodePath("top2_cont/top2_value"), NodePath("top3_cont/top3_value")]
+normal_color = Color(0, 0.980392, 0, 1)
+self_color = Color(1, 0, 0, 1)
 
 [node name="top1_cont" type="HSplitContainer" parent="Camera2D/GameOver/leaderboard"]
 z_index = 15
@@ -252,6 +259,7 @@ offset_right = 317.0
 offset_bottom = -128.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(307, 38)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -277,6 +285,7 @@ theme_override_font_sizes/font_size = 60
 text = "200000000"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("8_ewbju")
 
 [node name="top2_cont" type="HSplitContainer" parent="Camera2D/GameOver/leaderboard"]
 layout_mode = 1
@@ -291,6 +300,7 @@ offset_right = 317.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(307, 38)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -317,6 +327,7 @@ theme_override_font_sizes/font_size = 60
 text = "200000000"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("8_ewbju")
 
 [node name="top3_cont" type="HSplitContainer" parent="Camera2D/GameOver/leaderboard"]
 layout_mode = 1
@@ -331,6 +342,7 @@ offset_right = 317.0
 offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(307, 38)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
@@ -357,6 +369,7 @@ theme_override_font_sizes/font_size = 60
 text = "200000000"
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("8_ewbju")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/GameOver"]
 layout_mode = 1
@@ -522,3 +535,5 @@ fmod_parameters/mode/variant_type = 4
 fmod_parameters/pause/id = -4552771270613424376
 fmod_parameters/pause = 0.0
 fmod_parameters/pause/variant_type = 2
+
+[node name="ScoreFetcher" parent="." instance=ExtResource("15_nb51f")]

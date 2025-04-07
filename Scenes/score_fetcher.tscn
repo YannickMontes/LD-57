@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://e83vkqxus6wr"]
+
+[ext_resource type="Script" uid="uid://b0r5v345fl2d0" path="res://Scripts/ScoreFetcher.gd" id="1_lkddh"]
+
+[node name="ScoreFetcher" type="Node2D" groups=["score_fetcher", "score_fetcher_global"]]
+script = ExtResource("1_lkddh")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

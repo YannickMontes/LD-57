@@ -72,7 +72,6 @@ func _process(delta: float) -> void:
 	if player && player.global_position.y < last_pos_player.y && player.global_position.y < highest_distance_player:
 		var delta_distance = abs(player.global_position.y - last_pos_player.y)
 		var score_to_add = player.get_score(delta_distance)
-		print(score_to_add)
 		current_score += score_to_add
 
 	last_hit_timer += delta
@@ -129,6 +128,10 @@ func retrieve_background_generator():
 func game_over() -> void:
 	gameover_menu.visible = true
 	is_game_running = false
+	var score_fetcher_node = get_tree().get_nodes_in_group("score_fetcher")
+	if score_fetcher_node.size() > 0:
+		(score_fetcher_node[0] as ScoreFetcher).post_score(GameManager.current_score)
+	
 	if current_combo > 1:
 		music_emmiter.set_parameter("mode", "metal_slow")
 	else:

@@ -55,6 +55,7 @@ enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
 
 player=""
 finger=""
+score_fetcher_global=""
 
 [input]
 
