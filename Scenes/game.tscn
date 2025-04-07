@@ -337,7 +337,7 @@ obstacles_range_x_percentage = 0.5
 bonus_range_x_percentage = 0.6
 
 [node name="Finger" parent="." instance=ExtResource("4_3dryh")]
-position = Vector2(0, 1897)
+position = Vector2(0, 1865)
 scale = Vector2(14.25, 14.25)
 
 [node name="MusicEventEmmiter" type="FmodEventEmitter2D" parent="." groups=["music"]]

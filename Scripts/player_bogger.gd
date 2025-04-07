@@ -23,6 +23,9 @@ extends CharacterBody2D
 
 @export var velocity_detect_wall_threshold: float = 5.0
 
+@export var score_by_delta: Curve
+@export var score_multiplier: float
+
 @onready var sprite_arrow: Node2D = $LaunchFeedbackDir/SpriteArrow
 @onready var sprite_booger: Node2D = $PlayerSprite
 @onready var sprite_splash: Node2D = $PlayerSprite/SplashSprite
@@ -183,3 +186,6 @@ func restart() -> void:
 	is_holding_click = false
 	just_restarted = true
 	velocity = Vector2.ZERO
+
+func get_score(delta_dist:float) -> float:
+	return score_by_delta.sample(delta_dist) * score_multiplier
