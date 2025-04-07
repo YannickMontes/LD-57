@@ -1,8 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwr5nusocejj0"]
+[gd_scene load_steps=29 format=3 uid="uid://bwr5nusocejj0"]
 
 [ext_resource type="Script" uid="uid://chvs7nvi6tjix" path="res://Scripts/player_bogger.gd" id="1_fqqoy"]
 [ext_resource type="Texture2D" uid="uid://ch0s7ysijj1cc" path="res://Assets/Sprites/boggers54.png" id="2_nxmd7"]
+[ext_resource type="Texture2D" uid="uid://cjvabfyt2bk04" path="res://Assets/Sprites/load2.png" id="3_d2w88"]
 [ext_resource type="Texture2D" uid="uid://dk1oe65ytqtix" path="res://Assets/Sprites/arrow2.png" id="3_nxmd7"]
+[ext_resource type="Texture2D" uid="uid://bvqb5htsjjrm3" path="res://Assets/Sprites/etire1.png" id="4_jn3km"]
+[ext_resource type="Texture2D" uid="uid://cwday502kosd" path="res://Assets/Sprites/etire2.png" id="5_ellvm"]
+[ext_resource type="Texture2D" uid="uid://bcoe3rnb42vnh" path="res://Assets/Sprites/load.png" id="6_1mqqq"]
+[ext_resource type="Script" uid="uid://b8ju0oeoisecw" path="res://Scripts/player_anim_fsm.gd" id="7_jn3km"]
 
 [sub_resource type="Curve" id="Curve_nxmd7"]
 _data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
@@ -10,6 +15,50 @@ point_count = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eyq1q"]
 atlas = ExtResource("2_nxmd7")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7n8hk"]
+atlas = ExtResource("3_d2w88")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq48j"]
+atlas = ExtResource("2_nxmd7")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en3or"]
+atlas = ExtResource("4_jn3km")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th66d"]
+atlas = ExtResource("5_ellvm")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhgy2"]
+atlas = ExtResource("5_ellvm")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27c5e"]
+atlas = ExtResource("2_nxmd7")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5nxi"]
+atlas = ExtResource("6_1mqqq")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0rnr"]
+atlas = ExtResource("6_1mqqq")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_irlkl"]
+atlas = ExtResource("3_d2w88")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w18d3"]
+atlas = ExtResource("3_d2w88")
+region = Rect2(0, 0, 54, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wuua0"]
+atlas = ExtResource("3_d2w88")
 region = Rect2(0, 0, 54, 54)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2x2ut"]
@@ -23,6 +72,54 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7n8hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq48j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en3or")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th66d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhgy2")
+}],
+"loop": false,
+"name": &"launch",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27c5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5nxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0rnr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_irlkl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w18d3")
+}],
+"loop": false,
+"name": &"load",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wuua0")
+}],
+"loop": false,
+"name": &"load_loop",
 "speed": 5.0
 }]
 
@@ -93,12 +190,13 @@ min_scale_arrow = 2.0
 max_scale_arrow = 10.0
 velocity_detect_wall_threshold = 1.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 z_index = 5
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_2x2ut")
+script = ExtResource("7_jn3km")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimatedSprite2D"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite"]
 libraries = {
 &"": SubResource("AnimationLibrary_o3yry")
 }
@@ -151,3 +249,5 @@ collision_mask = 16
 [node name="RaycastRight" type="RayCast2D" parent="."]
 target_position = Vector2(150, 0)
 collision_mask = 16
+
+[connection signal="animation_finished" from="PlayerSprite" to="PlayerSprite" method="_on_animation_finished"]

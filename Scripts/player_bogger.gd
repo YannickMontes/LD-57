@@ -24,8 +24,11 @@ extends CharacterBody2D
 @export var velocity_detect_wall_threshold: float = 5.0
 
 @onready var sprite_arrow: Node2D = $LaunchFeedbackDir/SpriteArrow
+@onready var sprite_booger: Node2D = $PlayerSprite
 @onready var raycast_left: RayCast2D = $RaycastLeft
 @onready var raycast_right: RayCast2D = $RaycastRight
+
+@onready var player_anim_fsm: PlayerAnimFSM = $PlayerSprite
 
 var time_since_stretch = 0.0
 
@@ -110,6 +113,7 @@ func handle_inputs(delta: float):
 		is_holding_click = true
 		begin_hold_position = get_viewport().get_mouse_position()
 		time_since_stretch = 0.0
+		player_anim_fsm.change_state(player_anim_fsm.LOAD)
 		play_stretch_sfx(true)
 
 	if Input.is_action_just_released("click") && is_holding_click:
@@ -121,6 +125,7 @@ func handle_inputs(delta: float):
 		var angle = Vector2.UP.angle_to(current_launch_direction.normalized())
 		var angleDeg = rad_to_deg(angle)
 		launch_feedback_node.rotation_degrees = angleDeg
+		sprite_booger.rotation_degrees = angleDeg
 		time_since_stretch += delta
 
 func launch_bogger():
@@ -130,6 +135,7 @@ func launch_bogger():
 	is_currently_on_wall = false
 	is_affected_by_gravity = true
 	time_since_stretch = 0.0
+	player_anim_fsm.change_state(player_anim_fsm.LAUNCH)
 	play_stretch_sfx(false)
 	$LaunchEventEmmiter.play()
 	play_slide_sfx(false)
